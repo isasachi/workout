@@ -1,89 +1,107 @@
 ---
 name: Entreno
-description: An at-home 8-week bodyweight plan coached from the floor, one figure and one number at a time.
+description: A coach on the floor beside you; one exercise, one animated figure, one number at a time.
 colors:
   ground: "#000000"
-  surface: "#1c1c1e"
-  surface-raised: "#2c2c2e"
+  surface: "#161618"
+  surface-raised: "#262629"
+  surface-high: "#3a3a3e"
+  stage: "#111113"
   bar: "#111113"
+  line: "#2c2c2e"
   ink: "#ffffff"
   ink-secondary: "#aeaeb2"
   ink-tertiary: "#8e8e93"
   lime: "#b8f23f"
   on-lime: "#0d1600"
   lime-tint: "#1e2a0c"
-  lime-tint-ink: "#dcf7a6"
+  lime-pale: "#dcf7a6"
   danger: "#ff6961"
   session-strength: "#b8f23f"
   session-cardio: "#5ac8fa"
   session-hiit: "#ff5c7a"
   session-recovery: "#ffc24b"
   session-rest: "#636366"
-  demo-stage: "#0e0e10"
-  demo-floor: "#1b1b1e"
-  demo-figure: "#f2f2f7"
-  demo-figure-far: "#6c6c72"
-  demo-focus-far: "#5f7d27"
-  demo-prop: "#3a3a3f"
+  stage-floor: "#1a1a1d"
+  mannequin: "#ecebef"
 typography:
   display:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Segoe UI', Roboto, sans-serif"
+    fontFamily: "'Archivo Variable', 'Archivo', -apple-system, system-ui, sans-serif"
+    fontSize: "44px"
+    fontWeight: 800
+    lineHeight: 1
+    letterSpacing: "-0.025em"
+    fontVariation: "'wdth' 112"
+  headline:
+    fontFamily: "'Archivo Variable', 'Archivo', -apple-system, system-ui, sans-serif"
     fontSize: "34px"
     fontWeight: 800
     lineHeight: 1.1
-    letterSpacing: "-0.02em"
-  headline:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Segoe UI', Roboto, sans-serif"
-    fontSize: "28px"
-    fontWeight: 800
-    lineHeight: 1.15
-    letterSpacing: "-0.01em"
+    letterSpacing: "-0.025em"
+    fontVariation: "'wdth' 112"
   title:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Segoe UI', Roboto, sans-serif"
+    fontFamily: "'Archivo Variable', 'Archivo', -apple-system, system-ui, sans-serif"
     fontSize: "22px"
-    fontWeight: 700
+    fontWeight: 800
     lineHeight: 1.2
-  cue:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Segoe UI', Roboto, sans-serif"
-    fontSize: "19px"
-    fontWeight: 600
-    lineHeight: 1.3
+    letterSpacing: "-0.025em"
+    fontVariation: "'wdth' 112"
+  numeral-timer:
+    fontFamily: "'Archivo Variable', 'Archivo', ui-rounded, -apple-system, system-ui, sans-serif"
+    fontSize: "84px"
+    fontWeight: 700
+    lineHeight: 1
+    letterSpacing: "-0.02em"
+    fontFeature: "'tnum' 1"
+    fontVariation: "'wdth' 82"
+  numeral-count:
+    fontFamily: "'Archivo Variable', 'Archivo', ui-rounded, -apple-system, system-ui, sans-serif"
+    fontSize: "44px"
+    fontWeight: 700
+    lineHeight: 1
+    fontFeature: "'tnum' 1"
+    fontVariation: "'wdth' 82"
+  numeral-stat:
+    fontFamily: "'Archivo Variable', 'Archivo', ui-rounded, -apple-system, system-ui, sans-serif"
+    fontSize: "34px"
+    fontWeight: 700
+    lineHeight: 1
+    letterSpacing: "-0.01em"
+    fontFeature: "'tnum' 1"
+    fontVariation: "'wdth' 82"
   body:
     fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Segoe UI', Roboto, sans-serif"
     fontSize: "17px"
     fontWeight: 400
     lineHeight: 1.45
-  label:
+  body-strong:
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Segoe UI', Roboto, sans-serif"
+    fontSize: "17px"
+    fontWeight: 600
+    lineHeight: 1.25
+  note:
     fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Segoe UI', Roboto, sans-serif"
     fontSize: "15px"
-    fontWeight: 600
+    fontWeight: 400
     lineHeight: 1.45
-  numeral-hero:
-    fontFamily: "ui-rounded, 'SF Pro Rounded', -apple-system, system-ui, sans-serif"
-    fontSize: "84px"
-    fontWeight: 700
-    lineHeight: 1
-    letterSpacing: "-0.02em"
-    fontFeature: "tnum"
-  numeral-count:
-    fontFamily: "ui-rounded, 'SF Pro Rounded', -apple-system, system-ui, sans-serif"
-    fontSize: "44px"
-    fontWeight: 700
-    lineHeight: 1
-    fontFeature: "tnum"
+  label:
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Segoe UI', Roboto, sans-serif"
+    fontSize: "13px"
+    fontWeight: 600
+    lineHeight: 1.2
 rounded:
-  pill: "999px"
-  card: "20px"
+  row: "12px"
   inner: "14px"
-  cell: "12px"
+  capsule: "16px"
+  card: "20px"
+  pill: "999px"
 spacing:
+  tight: "6px"
+  row: "12px"
   gutter: "16px"
-  row-gap: "10px"
-  block-gap: "12px"
-  card-pad: "16px"
-  screen-gap: "28px"
-  section-gap: "32px"
-  column-max: "560px"
+  screen: "24px"
+  section: "32px"
+  stack: "36px"
 components:
   button-primary:
     backgroundColor: "{colors.lime}"
@@ -95,7 +113,9 @@ components:
     backgroundColor: "{colors.lime}"
     textColor: "{colors.on-lime}"
     rounded: "{rounded.pill}"
+    padding: "0 24px"
     height: "64px"
+    width: "100%"
   button-secondary:
     backgroundColor: "{colors.surface-raised}"
     textColor: "{colors.ink}"
@@ -104,13 +124,62 @@ components:
     height: "56px"
   button-quiet:
     textColor: "{colors.lime}"
+    typography: "{typography.body-strong}"
     padding: "0 12px"
     height: "44px"
-  icon-button:
-    backgroundColor: "{colors.surface-raised}"
+  demo-control:
     textColor: "{colors.ink}"
     rounded: "{rounded.pill}"
     size: "44px"
+  demo-control-on:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.ground}"
+    rounded: "{rounded.pill}"
+    size: "44px"
+  stage:
+    backgroundColor: "{colors.stage}"
+    rounded: "{rounded.card}"
+  week-day:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink-secondary}"
+    rounded: "{rounded.capsule}"
+    padding: "8px 0 10px"
+  week-day-today:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.ground}"
+    rounded: "{rounded.capsule}"
+    padding: "8px 0 10px"
+  stats-strip:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    typography: "{typography.numeral-stat}"
+    rounded: "{rounded.card}"
+    padding: "14px 16px 16px"
+  list-group:
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.card}"
+  exercise-row:
+    typography: "{typography.body-strong}"
+    padding: "10px 14px 10px 10px"
+    height: "84px"
+  set-row:
+    backgroundColor: "{colors.surface}"
+    typography: "{typography.numeral-count}"
+    rounded: "{rounded.card}"
+    padding: "14px 14px 14px 18px"
+  set-row-done:
+    backgroundColor: "{colors.lime-tint}"
+    rounded: "{rounded.card}"
+  set-check:
+    backgroundColor: "{colors.surface-raised}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    size: "64px"
+  set-check-on:
+    backgroundColor: "{colors.lime}"
+    textColor: "{colors.on-lime}"
+    rounded: "{rounded.pill}"
+    size: "64px"
   chip:
     backgroundColor: "{colors.surface-raised}"
     textColor: "{colors.ink}"
@@ -120,31 +189,20 @@ components:
   chip-selected:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.ground}"
-  grouped-list:
-    backgroundColor: "{colors.surface}"
-    rounded: "{rounded.card}"
-  set-card:
-    backgroundColor: "{colors.surface}"
-    rounded: "{rounded.card}"
-    padding: "14px 14px 14px 18px"
-  set-card-done:
-    backgroundColor: "{colors.lime-tint}"
-  set-check:
-    backgroundColor: "{colors.surface-raised}"
-    textColor: "{colors.ink}"
     rounded: "{rounded.pill}"
-    size: "64px"
-  set-check-done:
-    backgroundColor: "{colors.lime}"
-    textColor: "{colors.on-lime}"
-  demo-stage:
-    backgroundColor: "{colors.demo-stage}"
-    rounded: "{rounded.card}"
+    padding: "0 16px"
+    height: "44px"
+  done-banner:
+    backgroundColor: "{colors.lime-tint}"
+    textColor: "{colors.lime-pale}"
+    rounded: "{rounded.inner}"
+    padding: "14px 16px"
   tab-bar:
     backgroundColor: "{colors.bar}"
     textColor: "{colors.ink-tertiary}"
+    typography: "{typography.label}"
     height: "58px"
-  tab-bar-active:
+  tab-item-active:
     textColor: "{colors.ink}"
 ---
 
@@ -154,128 +212,156 @@ components:
 
 **Creative North Star: "The Coach on the Floor"**
 
-Entreno plays the fitness category standard straight: the dark, quiet iOS grammar of Apple Fitness and Nike Training Club, tuned to be read from a phone propped on the floor two metres away. Everything sits on a true-black ground in a single centred column; surfaces are one step of charcoal lighter; ink is white with two grey steps. One lime accent carries every action and every "done", and nothing else competes with it.
+Entreno is the category standard played straight: Apple Fitness and Nike Training Club, read from a phone propped on the floor. The ground is true black, surfaces climb in three soft charcoal steps, ink is white, and one lime carries every action and every "done". Each screen has one dominant thing: a large wide title, a 3D technique figure, or a single counted number. Everything else steps back in grey.
 
-The signature is the technique figure: a flat, round-capped vector athlete on a near-black stage, with the working muscle group lit in lime and a single cue line beneath it that changes with each phase of the rep. Its controls sit beside the cue, never over the figure. Around it, type and targets run large: 34px titles, 44 to 84px rounded numerals, 56 to 64px pill buttons. Depth comes from tonal steps, never shadow.
+The premium pass gives the system two voices. Archivo Variable speaks for the app: stretched wide (112%) and heavy (800) for titles, pulled condensed (82%) for every numeral, so counts and timers sit tall and tight. SF Pro speaks for the coach's words: body copy, cues, labels, and the tab bar. The technique stage is the signature: a matte clay mannequin in a dark studio, lit by a white key and a cool rim, its working muscles in lime, with the full list of the rep's steps fixed beneath it so only the highlight moves.
+
+Density is low and targets are large, because the user glances from two metres away between sets. Depth in the interface comes only from tonal steps; the one place with real light and shadow is inside the stage.
 
 **Key Characteristics:**
-- True-black ground, charcoal surfaces, white ink, one lime accent.
-- Session-type hues exist only as small markers (dots, done marks, HIIT block segments).
-- System SF Pro for words, SF Rounded tabular numerals for every count and time.
-- Soft 20px containers, 14px inner shapes, pills for everything tappable.
-- Flat: no shadows, no borders except hairline row rules inside grouped lists.
-- Motion is short and settling (one ease-out curve); reduced motion collapses it.
+- True black ground, three charcoal surface steps, white ink, one lime.
+- Wide heavy Archivo titles, condensed tabular Archivo numerals, SF Pro for words.
+- A 3D clay mannequin on a dark studio stage, working muscles in lime.
+- Every step of the rep listed under the stage; only the highlight moves.
+- Session hues only as small marks: dots, rings, segments.
+- Soft 20px cards, full pills for every button, an iOS-style tab bar.
 
 ## Colors
 
-A near-monochrome iOS dark palette with a single acid-lime voice and four small session hues.
+A monochrome dark ladder with a single acid-lime voice and four small session hues.
 
 ### Primary
-- **Floor Lime** (lime): the only action colour. Primary pill buttons, quiet text buttons, the focus ring, progress fill, the "today" dot, set-done checks, and the lit muscle group on the figure. Text on it is **Lime Shadow Ink** (on-lime), a near-black green.
-- **Lime Tint** (lime-tint) with **Lime Tint Ink** (lime-tint-ink): the done-state wash. A completed set card, the "level up" and "session done" banners, and the progress status pill turn this deep olive; their text is the pale lime.
+- **Floor Lime** (lime): the only action and completion colour. Primary pills, the checked set button, the current step's dot under the stage, the progress bar fill, quiet text buttons, focus rings, text selection, and the working muscles on the mannequin.
+- **Lime Ink** (on-lime): text and icons on lime; near-black with a green cast so lime pills never read as grey-on-yellow.
+- **Lime Tint** (lime-tint) and **Pale Lime** (lime-pale): the completion family. A logged set row turns lime-tint; done and level-up banners are lime-tint with pale-lime text; the "next level" pill on Progress is lime text on lime-tint.
 
 ### Secondary
-- **Session hues** (session-strength, session-cardio, session-hiit, session-recovery, session-rest): strength lime, cardio cyan, HIIT pink, recovery amber, rest grey. They mark what kind of day it is: the 12 to 14px dot beside a session title or plan row, the filled ring in the progress grid, the HIIT block track. Recovery is amber, not blue, so it never reads as cardio at dot size.
+- **Session hues** (session-strength, session-cardio, session-hiit, session-recovery, session-rest): strength lime, cardio cyan, HIIT pink, recovery amber, rest grey. They identify the session type in the meta-line dot, the week-strip rings (filled when the day is done), the Progress grid marks, and the HIIT block segments.
 
 ### Neutral
-- **True Black** (ground): every screen and full-screen overlay background.
-- **Charcoal Surface** (surface): grouped lists, set cards, the rest timer card, plan week tiles, the progress grid.
-- **Raised Charcoal** (surface-raised): secondary pills, chips, round icon buttons, stepper buttons, pressed-row feedback, row hairlines, empty progress segments.
-- **Tab Bar Black** (bar): the bottom tab bar and overlay footers, a hair above true black.
-- **White Ink / Secondary Ink / Tertiary Ink** (ink, ink-secondary, ink-tertiary): titles and values; meta lines and supporting copy; dates, chevrons, inactive tabs, column heads.
-- **Danger Coral** (danger): the "common mistakes" diamond marker and destructive reset actions only.
-- **Demo stage set** (demo-stage, demo-floor, demo-figure, demo-figure-far, demo-focus-far, demo-prop): the figure's world. Near limb in pale figure white, far limb in mid grey; focus muscles in lime near and dimmed olive far; props (chair, door, wall, steps) in dark greys so the body always reads first.
+- **True Black** (ground): the page, overlays, and the session sheet header.
+- **Charcoal** (surface): cards, list groups, the stats strip, set rows, week-day capsules.
+- **Raised Charcoal** (surface-raised): secondary pills, chips, stepper and check buttons, pressed rows, the current week row in Progress.
+- **High Charcoal** (surface-high): inactive step dots under the stage and rest-day dots.
+- **Stage Black** (stage, bar): the technique stage, the tab bar, and the session footer; one step below charcoal so the figure's studio reads as a recess.
+- **Hairline** (line): 1px rules between rows inside one list group and between the three stats.
+- **White / Grey / Dim Grey** (ink, ink-secondary, ink-tertiary): primary text; meta lines and notes; dates, chevrons, inactive tabs, and steps not yet current.
+- **Coral** (danger): destructive confirmation only (delete data).
+- **Studio Floor** (stage-floor) and **Clay** (mannequin): the 3D stage's matte floor and the mannequin's body material.
 
 ### Named Rules
 **The One Voice Rule.** Lime is the only colour that means "tap this" or "done". Never introduce a second action colour.
 
 **The Marker-Only Rule.** Session hues appear only as small marks (dots, rings, segments at most 28px wide). They never fill a button, a card, or a title.
 
+**The Amber Recovery Rule.** Recovery is amber, never blue: a second blue reads as cardio's cyan at dot size, and blue-violet is a house-banned hue.
+
 ## Typography
 
-**Display Font:** SF Pro via the system stack (-apple-system, BlinkMacSystemFont, with system-ui, Segoe UI, Roboto fallbacks)
-**Label/Mono Font:** SF Pro Rounded via ui-rounded, with tabular numerals
+**Display Font:** Archivo Variable (with Archivo, -apple-system, system-ui)
+**Numeral Font:** Archivo Variable, condensed (with ui-rounded, -apple-system)
+**Body Font:** SF Pro Text via -apple-system (with system-ui, Segoe UI, Roboto)
 
-**Character:** The native iOS voice, set heavy and large. Heavy 800 titles with slight negative tracking give the large-title feel; rounded tabular numerals make counts and timers friendly and steady as they tick.
+**Character:** A wide, heavy grotesque for titles gives the app its premium sports-poster voice; the same family pulled condensed makes numbers tall and economical; SF Pro keeps instructions native and calm.
 
 ### Hierarchy
-- **Display** (800, 34px, 1.1, -0.02em): tab-screen large titles (Hoy session title, Plan, Progreso).
-- **Headline** (800, 28 to 30px, 1.12 to 1.15, -0.01em): sheet and runner titles (exercise name, day sheet, history).
-- **Title** (700, 18 to 22px, 1.2): section heads inside a screen ("Ejercicios", "Mañana").
-- **Cue** (600, 19px, 1.3, balanced): the figure's phase cue line and lead sentences. Reserves 2.6em so the layout does not jump as cues change.
-- **Body** (400, 17px, 1.45): base copy and list-row names (600 for names).
-- **Label** (600, 15px; meta and notes at 15 to 16px regular in secondary ink; tab labels 12px 600).
-- **Numerals** (SF Rounded 700, tabular): the session timer (84px, 72px mid), rest countdown (64px), set count (44px), week tiles (16px).
+- **Display** (800, 44px, line-height 1, wdth 112): the session title on Hoy ("Fuerza A").
+- **Headline** (800, 34px, line-height 1.1, wdth 112): screen titles on Plan and Progreso. The exercise title inside a guided session runs the same voice at 30px.
+- **Title** (800, 22px, line-height 1.2, wdth 112): section headings ("Ejercicios", "Calentamiento") and the HIIT phase name (24px).
+- **Numeral, timer** (700, 84px, wdth 82, tabular): the running clock in cardio and HIIT (72px when the demo shares the screen); the rest countdown runs at 64px.
+- **Numeral, count** (700, 44px, wdth 82, tabular): the value being logged in a set row.
+- **Numeral, stat** (700, 34px, wdth 82, tabular): the three numbers in the stats strip; week-strip dates use the same face at 19px.
+- **Body** (400, 17px, line-height 1.45): meta lines, step lists under the stage, list text.
+- **Body strong** (600, 17px): row names, current step, list summaries.
+- **Note** (400, 15px): secondary guidance under lists, in ink-secondary.
+- **Label** (600, 13px, sentence case): stat labels, column heads, overlay meta; tab labels at 12px.
 
 ### Named Rules
-**The Rounded Number Rule.** Every count, time, week number, and speed label uses the rounded numeral face with tabular figures. Words never do.
+**The Two Widths Rule.** Archivo appears at exactly two widths: 112% for words, 82% for numbers. Titles are never condensed and numerals are never wide.
 
-**The Floor Distance Rule.** Nothing a user acts on mid-session is set below 17px; the number being counted is at least 44px.
+**The Tabular Number Rule.** Every count, time, dose, date, and week number is set in the condensed numeral face with tabular figures. Words never are.
+
+**The Floor Distance Rule.** Anything read mid-session (cues, the current step, the logged value) is at least 17px; the number being counted is at least 44px.
 
 ## Layout
 
-One centred column, max 560px, with 16px gutters that grow to the safe-area insets. Tab screens stack sections with 28 to 32px gaps; within a section the head sits 12px above its content. Sheets and the guided session open as full-screen overlays: a 44px close / title / spacer bar on top, a scrolling body, and a sticky footer on the tab-bar black carrying the primary actions at thumb reach. The bottom tab bar (58px plus safe area) holds three items and stays fixed.
-
-There are no breakpoints. On desktop the same 560px column centres on black and the tab bar's items align to it. In session mode the figure is height-capped (25 to 30dvh worth of width) so the sets or timer fit on the first screen.
+One centered column, at most 560px wide, with 16px gutters that grow to the safe-area inset. Screens are vertical grids: 24px between blocks on Hoy, 32px on Plan and Progreso, 36px between the stacked sections of the session preview, 12px between a heading and its group. Hoy's first viewport runs title, meta line, date line, week strip, stage, stats strip, then the Empezar pill at thumb reach; the stage gives up height (clamp 240px to 380px, 40dvh) instead of width so the pill stays visible. Guided sessions open as a full-screen sheet with a 44px close circle, a centered title and step counter, and a footer on stage black that fades the content scrolling under it. Inside sessions the stage shrinks to 30dvh (25dvh for timed moves) so sets or the timer fit on the first screen. A fixed tab bar of three items sits at the bottom. On desktop the same column simply centers on black.
 
 ## Elevation & Depth
 
-Entirely flat. Depth is tonal: ground (black) to bar to surface to raised surface, each a small step lighter. No box-shadows, text-shadows, or blur anywhere. Overlays separate by covering the screen and rising in (24px, 320ms), not by casting shadow.
+The interface is flat. Depth comes from the tonal ladder only: black ground, charcoal surface, raised charcoal for controls and pressed states. There are no box shadows anywhere in the UI. The exception is inside the stage, which is a lit 3D studio: a hemisphere fill, a white key light casting soft PCF shadows (radius 6), two cool rim lights behind the figure to cut the silhouette from the floor, a faint bounce from below, soft contact-shadow blobs where the body meets the floor, and fog in the stage colour so the floor fades into the background with no horizon line.
 
 ### Named Rules
-**The Tonal Step Rule.** To lift something, move it one step up the ground / surface / raised ladder. Never add a shadow.
+**The Tonal Step Rule.** To lift something in the interface, move it one step up the ground / surface / raised ladder. Never add a shadow.
+
+**The Lit Stage Rule.** Light, shadow, and fog belong to the technique stage alone; they never leak out into cards or buttons.
 
 ## Shapes
 
-Soft and continuous. Containers (lists, set cards, the demo stage, the rest card, the progress grid) use the 20px card radius; nested shapes and smaller panels (thumbnails, week tiles, banners) use 14px; progress-grid rows 12px. Everything tappable that is not a row is a full pill or circle: buttons, chips, steppers, the 64px set check, 44px icon buttons. Progress tracks and segments are pills too. The only sharp form is the danger diamond (a 10px square rotated 45deg with 2px corners) marking mistakes, against the lime circle marking cues. The technique figure is drawn with round line caps throughout.
+Soft and continuous. Cards, list groups, the stage, set rows, and the stats strip use 20px corners; banners, inset blocks, and Plan week cells use 14px; week-day capsules 16px; thumbnails and Progress grid rows 12px. Every button, chip, stepper, control, track, and dot is a full pill or circle. Inside a group, rows are separated by 1px hairlines; groups themselves have no border. The mannequin is built from lathed, tapered limbs and spheres for joints, head, hands, and feet: a smooth artist's figure with no face and no clothing.
 
 ## Components
 
 ### Buttons
-Confident, thumb-sized pills.
-- **Shape:** full pill (999px), minimum 56px tall, 24px side padding, 18px 700 label.
-- **Primary:** lime with on-lime ink. The Hoy "Empezar" hero is 64px tall at 20px and spans the column.
-- **Secondary:** raised charcoal with white ink, used for "Atrás", alternates, and skip.
-- **Quiet:** transparent, lime 600 text, 44px tall, for inline alternatives and disclosures.
-- **Press / Focus:** press scales to 0.97 over 160ms on the house ease; focus is a 3px lime outline offset 2px; disabled drops to 40% opacity.
+Full pills, confident and large.
+- **Shape:** full pill (999px).
+- **Primary:** lime with lime ink, 56px tall, 24px side padding, set in the wide Archivo voice at 800. The Empezar pill on Hoy is full width and 64px tall at 21px, with a filled play icon.
+- **Secondary:** raised charcoal with white SF text at 700, same size.
+- **Quiet:** transparent with lime 17px text, 44px tall, used for "Ver" and alternate actions.
+- **Press:** every button scales to 0.97 on press over 160ms with the house ease; disabled drops to 40% opacity.
+- **Focus:** 3px lime outline, 2px offset, across the app.
 
 ### Chips
-- **Style:** raised charcoal pills, 44px tall, 16px 600, split equally across a row.
-- **State:** selected inverts to white with black text (aria-pressed). The same inversion marks the selected plan week and the active demo speed.
+- **Style:** raised charcoal pills, 44px tall, 16px semibold text, stretched to share a row equally.
+- **State:** the selected chip inverts to white with black text.
 
 ### Cards / Containers
 - **Corner Style:** 20px.
-- **Background:** charcoal surface on black.
-- **Shadow Strategy:** none (see Elevation & Depth).
-- **Border:** none; grouped lists divide rows with a 1px raised-charcoal hairline.
-- **Internal Padding:** 14 to 16px; list rows run 68 to 84px tall with a 64px figure thumbnail where the row is an exercise.
+- **Background:** charcoal on black.
+- **Shadow Strategy:** none; see Elevation & Depth.
+- **Border:** none; 1px hairlines only between rows inside one group.
+- **Internal Padding:** 14 to 16px.
 
-### Inputs / Fields
-The only input is the set logger: a 48px round minus / plus stepper flanking a 44px rounded numeral with its unit, and a 64px round check. The check turns lime with a short pop when the set is marked, and the whole set card washes to lime tint.
+### Lists and Exercise Rows
+Grouped iOS-style lists on charcoal. An exercise row is 84px tall: a 64px 3D thumbnail of the move on 14px corners, the name in semibold 17px, the dose in grey 15px, and a dim chevron. Pressing a row fills it raised charcoal.
 
 ### Navigation
-iOS bottom tab bar: three equal items (Hoy, Plan, Progreso), 24px stroke icon over a 12px 600 label, tertiary grey at rest, white when current. No indicator pill, no accent on tabs. Inside overlays, navigation is the round close button top-left and the footer's Atrás / Siguiente pair.
+A fixed three-item tab bar on stage black: 26px line icons over 12px semibold labels, dim grey at rest, white when current, 58px tall above the safe area. Sheets close with a 44px raised-charcoal circle in the top-left.
 
-### Technique Figure (signature)
-A 220:196 near-black stage with a 20px radius holding a flat, round-capped figure and its props. Working muscles are lit lime (dimmed olive on the far side). Under the stage, in order: the cue line (19px 600, white, changes per rep phase), then a right-aligned row of 44px round controls (play/pause, 1x / half-speed toggle, next step). Controls never overlay the figure. Small still versions serve as list thumbnails at a 14px radius.
+### Technique Stage (signature)
+A 20px-cornered recess in stage black holding the three.js scene: a clay mannequin seen from a three-quarter camera (26 degree field of view) framed on everything the move reaches, with the props it needs (chair, wall, door, towel, step, backpack, mat) in charcoal. Working muscles render in lime with a faint green glow. Controls sit in the stage's top-right corner as 44px translucent dark circles (play/pause, 1x or ½x, next step), clear of the figure; the active toggle inverts to white. When WebGL is unavailable, a flat SVG figure takes its place using the demo palette.
 
-### Rest Timer
-A charcoal card that slides in (8px, 260ms) above the session footer: secondary-ink "Descansa" label, a 64px rounded countdown, a small hint line, and a secondary "Saltar" pill to the right.
+### Step List
+Directly under the stage, every step of the rep is listed at once, 17px, 10px apart, each with a 9px dot. Steps not current are dim grey with high-charcoal dots; the current step turns white and semibold and its dot turns lime and grows to 1.25x, over 360ms. Timed sessions replace the list with one fixed 19px cue per move that changes only when the move does.
+
+### Week Strip
+Seven equal capsules under the Hoy title: day letter (12px semibold), date in the condensed numeral face (19px bold), and a 20px ring in the session hue that fills when the day is logged, with a lime-ink check. Rest days show an 8px grey dot instead of a ring. Today inverts to a white capsule with black text.
+
+### Stats Strip
+Three equal cells in one charcoal 20px group directly under the stage, split by hairlines: a 13px semibold grey label over a 34px condensed numeral (minutes, exercises, RIR or RPE).
+
+### Set Row
+A 20px charcoal card per set: a grey label, minus and plus circles (48px, raised charcoal) around the 44px condensed value with its unit, and a 64px check circle. Checking fills the circle lime with a short pop and turns the row lime-tint. The next set to log carries the screen's one lime action.
+
+### Timer and Progress
+A centered condensed clock with a grey sub-line, an 8px raised-charcoal track filling lime, and for HIIT a row of 28px by 8px block segments that fill pink as blocks complete, with the current block ringed in pink.
 
 ## Do's and Don'ts
 
 ### Do:
 - **Do** keep every screen to one dominant thing: one figure, one number, or one large title, with the primary lime pill at thumb reach.
-- **Do** show session type with a 12 to 14px hue dot beside the title or row, never with a coloured surface.
-- **Do** set all numbers in the rounded tabular face (ui-rounded), at 44px or larger when they are being counted live.
-- **Do** place demo controls under the figure beside its cue line, as 44px raised-charcoal circles.
-- **Do** mark completion with the lime family: lime check, lime-tint card, pale-lime banner text.
-- **Do** use the single house ease (cubic-bezier(0.22, 1, 0.36, 1)) at 140 to 320ms for presses, fades, and rises.
+- **Do** set titles in Archivo at 800 and 112% width, and every number in Archivo at 82% width with tabular figures.
+- **Do** keep the full list of the rep's steps under the stage and move only the highlight.
+- **Do** place demo controls in the stage's top-right corner as 44px translucent dark circles, clear of the figure's working area.
+- **Do** show session type with a small hue dot or ring beside the title, in the week strip, or in a grid, never with a coloured surface.
+- **Do** mark completion with the lime family: lime check, lime-tint row, pale-lime banner text.
+- **Do** use the single house ease (cubic-bezier(0.22, 1, 0.36, 1)) at 140 to 360ms for presses, fades, and rises.
 
 ### Don't:
-- **Don't** use shadows or borders to separate surfaces; step the tone instead.
+- **Don't** use shadows to separate interface surfaces; step the tone instead. Hairlines are for rows inside one group only.
 - **Don't** add a second accent or let a session hue fill a button, card, or heading.
 - **Don't** add a blue or blue-violet session colour; recovery stays amber so it never reads as cardio's cyan at dot size.
-- **Don't** put controls, labels, or overlays on top of the technique figure.
-- **Don't** set interactive text below 17px or tap targets below 44px.
+- **Don't** condense a title or widen a numeral.
+- **Don't** put overlays or labels over the figure; the stage corner is the only place for controls.
+- **Don't** set mid-session reading text below 17px or tap targets below 44px.
 - **Don't** add small uppercase labels above titles; titles stand on their own with a meta line beneath.
