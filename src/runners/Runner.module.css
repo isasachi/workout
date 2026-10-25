@@ -1,0 +1,280 @@
+.screen {
+  display: grid;
+  gap: 20px;
+}
+
+.h1 {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.h2 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.lead {
+  font-size: 17px;
+  color: var(--text-2);
+}
+
+.note {
+  font-size: 15px;
+  color: var(--text-2);
+  padding: 0 4px;
+}
+
+.titleBlock {
+  display: grid;
+  gap: 4px;
+}
+
+.dose {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.slotNote {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.levelUp {
+  padding: 14px 16px;
+  border-radius: var(--r-inner);
+  background: #1e2a0c;
+  color: #dcf7a6;
+  font-size: 16px;
+}
+
+.sets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.variant {
+  display: grid;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.disclosure {
+  justify-self: start;
+  min-height: 44px;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.footer {
+  display: grid;
+  gap: 10px;
+}
+
+.navRow {
+  display: flex;
+  gap: 10px;
+}
+
+.navRow > :global(.btn) {
+  flex: 1;
+}
+
+.navRow > :global(.btn-secondary) {
+  flex: 0 0 auto;
+}
+
+.rest {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 8px 8px 18px;
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.restLabel {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.restTime {
+  flex: 1;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.sumRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+}
+
+.sumName {
+  font-weight: 600;
+}
+
+.sumVal {
+  color: var(--text-2);
+  text-align: right;
+}
+
+/* Timer screens */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--surface-2);
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 160ms var(--ease), color 160ms var(--ease);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.timerBlock {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+.bigTime {
+  font-size: 84px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.timerSub {
+  font-size: 17px;
+  color: var(--text-2);
+}
+
+.phase {
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.phaseHint {
+  font-size: 17px;
+  color: var(--text-2);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.bar {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  transition: width 250ms linear;
+}
+
+.blocks {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.block {
+  width: 28px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+
+.blockDone {
+  background: var(--c-hiit);
+}
+
+.blockNow {
+  outline: 2px solid var(--c-hiit);
+  outline-offset: 2px;
+}
+
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 64px;
+  padding: 10px 14px;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-size: 17px;
+}
+
+.box {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--on-accent);
+}
+
+.boxOn {
+  background: var(--accent);
+}
+
+.doneBanner {
+  padding: 14px 16px;
+  border-radius: var(--r-inner);
+  background: #1e2a0c;
+  color: #dcf7a6;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.rowActions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.boxBtn {
+  width: 44px;
+  height: 44px;
+  border: 0;
+}
+
+/* Keep the demo short enough that the sets or the timer fit on the first screen. */
+.demo > div {
+  width: min(100%, calc(34dvh * 220 / 196));
+  margin: 0 auto;
+}

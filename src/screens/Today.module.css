@@ -1,0 +1,113 @@
+.screen {
+  display: grid;
+  gap: 28px;
+}
+
+.skeleton {
+  height: 70vh;
+}
+
+.head {
+  display: grid;
+  gap: 4px;
+  padding-top: 8px;
+}
+
+.date {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 34px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.dot {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+}
+
+.meta {
+  font-size: 17px;
+  color: var(--text-2);
+}
+
+.hero {
+  display: grid;
+  gap: 16px;
+}
+
+.start {
+  min-height: 64px;
+  font-size: 20px;
+}
+
+.done {
+  display: grid;
+  gap: 12px;
+}
+
+.doneText {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.hint {
+  font-size: 15px;
+  color: var(--text-2);
+  text-align: center;
+}
+
+.startCard {
+  display: grid;
+  gap: 12px;
+  padding: 20px;
+  border-radius: var(--r-card);
+  background: var(--surface);
+}
+
+.startTitle {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.startText {
+  font-size: 16px;
+  color: var(--text-2);
+}
+
+.startActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.startActions > :global(.btn) {
+  flex: 1 1 140px;
+}
+
+.next {
+  display: grid;
+  gap: 12px;
+}
+
+.h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.phase {
+  font-size: 15px;
+  color: var(--text-3);
+  padding: 0 4px;
+}

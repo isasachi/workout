@@ -1,0 +1,209 @@
+.screen {
+  display: grid;
+  gap: 32px;
+}
+
+.head {
+  display: grid;
+  gap: 4px;
+  padding-top: 8px;
+}
+
+.title {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.meta {
+  font-size: 17px;
+  color: var(--text-2);
+}
+
+.weeks {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 6px;
+}
+
+.week {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 48px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text-2);
+  transition: background-color 160ms var(--ease), color 160ms var(--ease);
+}
+
+.week[aria-selected='true'] {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.weekLabel {
+  font: 700 16px/1 var(--font-num);
+}
+
+.nowDot {
+  position: absolute;
+  bottom: 6px;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.section {
+  display: grid;
+  gap: 12px;
+}
+
+.h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.day {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 68px;
+  padding: 10px 14px 10px 16px;
+  border: 0;
+  background: none;
+  text-align: left;
+}
+
+.day:active {
+  background: var(--surface-2);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+}
+
+.dayText {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.dayName {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.dayDate {
+  font-weight: 400;
+  color: var(--text-2);
+}
+
+.today {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.session {
+  font-size: 15px;
+  color: var(--text-2);
+}
+
+.check {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.chev {
+  display: grid;
+  color: var(--text-3);
+}
+
+.phase {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.phaseWeeks {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.phaseText {
+  display: grid;
+  gap: 2px;
+}
+
+.phaseName {
+  font-weight: 600;
+}
+
+.phaseFocus {
+  font-size: 15px;
+  color: var(--text-2);
+}
+
+.note {
+  font-size: 15px;
+  color: var(--text-2);
+  padding: 0 4px;
+}
+
+.guide {
+  border-radius: var(--r-card);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.item + .item {
+  border-top: 1px solid var(--line); /* taste-skill-ignore: row rules inside a list */
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 56px;
+  padding: 12px 16px;
+  font-size: 17px;
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary svg {
+  flex: none;
+  color: var(--text-3);
+  transition: transform 200ms var(--ease);
+}
+
+.item[open] .summary svg {
+  transform: rotate(90deg);
+}
+
+.body {
+  display: grid;
+  gap: 10px;
+  padding: 0 16px 16px;
+  font-size: 16px;
+  color: var(--text-2);
+}

@@ -1,0 +1,116 @@
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    'label label label'
+    'value value check'
+    'extra extra extra';
+  align-items: center;
+  gap: 6px 12px;
+  padding: 14px 14px 14px 18px;
+  border-radius: var(--r-card);
+  background: var(--surface);
+  transition: background-color 200ms var(--ease);
+}
+
+.done {
+  background: #1e2a0c;
+}
+
+.label {
+  grid-area: label;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.value {
+  grid-area: value;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.adj {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--surface-2);
+  transition: transform 140ms var(--ease);
+}
+
+.adj:active {
+  transform: scale(0.92);
+}
+
+.adj:disabled {
+  opacity: 0.3;
+}
+
+.num {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  min-width: 96px;
+}
+
+.num > :first-child {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.unit {
+  font-size: 15px;
+  color: var(--text-2);
+}
+
+.check {
+  grid-area: check;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--text);
+  transition: transform 140ms var(--ease), background-color 200ms var(--ease);
+}
+
+.check:active {
+  transform: scale(0.92);
+}
+
+.check[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.stop {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.manual {
+  grid-area: extra;
+  justify-self: start;
+  min-height: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.range {
+  grid-area: extra;
+  font-size: 14px;
+  color: var(--text-3);
+}

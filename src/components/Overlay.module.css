@@ -1,0 +1,83 @@
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  animation: rise 320ms var(--ease);
+  outline: none;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 8px;
+  padding: calc(env(safe-area-inset-top, 0px) + 8px) var(--gutter-r) 8px var(--gutter-l);
+  background: var(--bg);
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+
+.titles {
+  min-width: 0;
+  text-align: center;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.spacer {
+  width: 44px;
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px var(--gutter-r) 32px var(--gutter-l);
+}
+
+.body > * {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer {
+  padding: 12px var(--gutter-r) calc(env(safe-area-inset-bottom, 0px) + 12px) var(--gutter-l);
+  background: var(--bar);
+}
+
+.footer > * {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}

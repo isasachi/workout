@@ -1,0 +1,75 @@
+.screen {
+  display: grid;
+  gap: 24px;
+}
+
+.titleRow {
+  display: grid;
+  gap: 4px;
+}
+
+.h1 {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.needs {
+  font-size: 15px;
+  color: var(--text-2);
+}
+
+.lead {
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.notes {
+  display: grid;
+  gap: 24px;
+}
+
+.block {
+  display: grid;
+  gap: 10px;
+}
+
+.h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.cues,
+.mistakes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.cues li,
+.mistakes li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 17px;
+}
+
+.cues li::before,
+.mistakes li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0.5em;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.mistakes li::before {
+  border-radius: 2px;
+  background: var(--danger);
+  transform: rotate(45deg);
+}

@@ -1,0 +1,195 @@
+.screen {
+  display: grid;
+  gap: 32px;
+}
+
+.head {
+  display: grid;
+  gap: 4px;
+  padding-top: 8px;
+}
+
+.title {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.meta {
+  font-size: 16px;
+  color: var(--text-2);
+}
+
+.section {
+  display: grid;
+  gap: 12px;
+}
+
+.h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.empty,
+.note {
+  font-size: 15px;
+  color: var(--text-2);
+}
+
+.grid {
+  display: grid;
+  gap: 2px;
+  padding: 12px 8px;
+  border-radius: var(--r-card);
+  background: var(--surface);
+}
+
+.gridRow {
+  display: grid;
+  grid-template-columns: 40px repeat(7, 1fr);
+  align-items: center;
+  min-height: 40px;
+  border-radius: 12px;
+}
+
+.current {
+  background: var(--surface-2);
+}
+
+.colHead {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+.rowHead {
+  padding-left: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-2);
+}
+
+.cell {
+  display: grid;
+  place-items: center;
+}
+
+.mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 2px solid #3a3a3c;
+}
+
+.restMark {
+  width: 8px;
+  height: 8px;
+  border: 0;
+  background: #3a3a3c;
+}
+
+.todayMark {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.exRow {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 68px;
+  padding: 12px 14px 12px 16px;
+  border: 0;
+  background: none;
+  text-align: left;
+}
+
+.exRow:active {
+  background: var(--surface-2);
+}
+
+.exText {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.exName {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.exMeta {
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #1e2a0c;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.chev {
+  display: grid;
+  color: var(--text-3);
+}
+
+.dataActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.dataActions > :global(.btn) {
+  flex: 1 1 140px;
+}
+
+.startRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+  padding: 8px 4px 8px 16px;
+  border-radius: var(--r-inner);
+  background: var(--surface);
+  font-size: 16px;
+}
+
+.startBtns {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.confirm {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: var(--r-inner);
+  background: #2a1210;
+  font-size: 16px;
+}
+
+.danger {
+  background: var(--danger);
+  color: #1a0201;
+}
+
+.dangerText {
+  justify-self: start;
+  color: var(--danger);
+}
+
+.msg {
+  font-size: 15px;
+  color: var(--text);
+}

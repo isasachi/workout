@@ -1,0 +1,72 @@
+.wrap {
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.box {
+  position: relative;
+  aspect-ratio: 220 / 196;
+  max-width: 100%;
+  border-radius: var(--r-card);
+  background: var(--demo-bg);
+  overflow: hidden;
+}
+
+.loading {
+  background: var(--surface);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.controls {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.ctrl {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--chip);
+  color: var(--text);
+  transition: transform 160ms var(--ease), background-color 160ms var(--ease);
+}
+
+.ctrl:active {
+  transform: scale(0.92);
+}
+
+.on {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.speed {
+  font: 600 15px/1 var(--font-num);
+}
+
+.cue {
+  min-height: 2.6em;
+  font-size: 19px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.error {
+  margin: 0;
+  padding: 24px;
+  color: var(--text-2);
+}

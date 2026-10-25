@@ -1,0 +1,34 @@
+.screen {
+  display: grid;
+  gap: 28px;
+}
+
+.head {
+  display: grid;
+  gap: 4px;
+}
+
+.h1 {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.12;
+}
+
+.meta {
+  font-size: 16px;
+  color: var(--text-2);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.done {
+  flex-basis: 100%;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+}

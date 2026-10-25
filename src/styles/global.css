@@ -1,0 +1,187 @@
+/* Layout: one column, iOS large titles, a bottom tab bar; read from the floor, so type and targets run large. */
+:root {
+  color-scheme: dark;
+
+  --bg: #000;
+  --surface: #1c1c1e;
+  --surface-2: #2c2c2e;
+  --chip: rgba(44, 44, 46, 0.92);
+  --line: #2c2c2e;
+  --bar: #111113;
+  --text: #fff;
+  --text-2: #aeaeb2;
+  --text-3: #8e8e93;
+  --accent: #b8f23f;
+  --on-accent: #0d1600;
+  --danger: #ff6961;
+
+  --c-strength: #b8f23f;
+  --c-cardio: #5ac8fa;
+  --c-hiit: #ff5c7a;
+  --c-recovery: #ffc24b;
+  --c-rest: #636366;
+
+  --demo-bg: #0e0e10;
+  --demo-floor: #1b1b1e;
+  --demo-fig: #f2f2f7;
+  --demo-fig-far: #6c6c72;
+  --demo-focus: #b8f23f;
+  --demo-focus-far: #5f7d27;
+  --demo-prop: #3a3a3f;
+  --demo-prop-far: #26262a;
+  --demo-prop-line: #8e8e93;
+  --demo-wall: #161618;
+  --demo-towel: #c7c7cc;
+  --demo-towel-far: #6c6c72;
+  --demo-pack: #5ac8fa;
+  --demo-mat: #2a2a2e;
+
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-num: ui-rounded, 'SF Pro Rounded', -apple-system, system-ui, sans-serif;
+
+  --r-card: 20px;
+  --r-inner: 14px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --tabbar-h: 58px;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.45 var(--font);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.num {
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Shared controls */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 56px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 700;
+  transition: transform 160ms var(--ease), opacity 160ms var(--ease), background-color 160ms var(--ease);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn-secondary {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.btn-quiet {
+  min-height: 44px;
+  padding: 0 12px;
+  background: transparent;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: var(--r-card);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.list > li + li {
+  border-top: 1px solid var(--line); /* taste-skill-ignore: row rules inside a list */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

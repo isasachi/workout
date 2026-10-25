@@ -1,0 +1,29 @@
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 6px max(var(--gutter-r), calc((100vw - 560px) / 2)) calc(env(safe-area-inset-bottom, 0px) + 6px) max(var(--gutter-l), calc((100vw - 560px) / 2));
+  background: var(--bar);
+}
+
+.item {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-height: var(--tabbar-h);
+  padding: 6px 0 0;
+  border: 0;
+  background: none;
+  color: var(--text-3);
+  font-size: 12px;
+  font-weight: 600;
+  transition: color 160ms var(--ease);
+}
+
+.item[aria-current='page'] {
+  color: var(--text);
+}

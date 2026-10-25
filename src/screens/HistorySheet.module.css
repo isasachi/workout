@@ -1,0 +1,49 @@
+.screen {
+  display: grid;
+  gap: 24px;
+}
+
+.head {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+
+.h1 {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.meta {
+  font-size: 16px;
+  color: var(--text-2);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+}
+
+.rowText {
+  display: grid;
+  gap: 2px;
+}
+
+.date {
+  font-weight: 600;
+}
+
+.variant {
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.values {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: right;
+}
