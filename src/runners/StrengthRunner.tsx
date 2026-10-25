@@ -63,6 +63,8 @@ export default function StrengthRunner({ session, date }: { session: 'A' | 'B'; 
   };
 
   const total = slots.length + 2;
+  const current = step >= 1 && step <= slots.length ? sets[slots[step - 1].exercise] : null;
+  const setsOpen = !!current && current.values.some((v) => v === null);
   const last = total - 1;
   const go = (i: number) => {
     setStep(Math.max(0, Math.min(last, i)));
@@ -85,7 +87,7 @@ export default function StrengthRunner({ session, date }: { session: 'A' | 'B'; 
           <button type="button" className="btn btn-secondary" onClick={() => go(step - 1)}>Atrás</button>
         )}
         {step < last ? (
-          <button type="button" className="btn btn-primary" onClick={() => go(step + 1)}>
+          <button type="button" className={`btn ${setsOpen ? 'btn-secondary' : 'btn-primary'}`} onClick={() => go(step + 1)}>
             {step === 0 ? 'Empezar ejercicios' : step === slots.length ? 'Ver resumen' : 'Siguiente ejercicio'}
           </button>
         ) : (
@@ -192,7 +194,6 @@ function ExerciseStep({ slot, week, log, history, onChange }: StepProps) {
 
   return (
     <div className={s.screen}>
-      <DemoPlayer key={v.id} moveId={v.move} pause={v.pause} label={v.name} className={s.demo} />
       <div className={s.titleBlock}>
         <h1 className={s.h1}>{v.name}</h1>
         <p className={s.dose}>
@@ -200,6 +201,7 @@ function ExerciseStep({ slot, week, log, history, onChange }: StepProps) {
         </p>
         {slot.note && <p className={s.slotNote}>{slot.note}</p>}
       </div>
+      <DemoPlayer key={v.id} moveId={v.move} pause={v.pause} label={v.name} className={s.demo} />
 
       {ready && (
         <p className={s.levelUp}>
@@ -217,6 +219,7 @@ function ExerciseStep({ slot, week, log, history, onChange }: StepProps) {
               suggested={lastSame?.values[i] ?? slot.reps[0]}
               range={slot.reps}
               perSide={ex.perSide}
+              primary={i === log.values.indexOf(null)}
               onLog={(nv) => {
                 const values = [...log.values];
                 values[i] = nv;

@@ -124,3 +124,9 @@
   font-size: 14px;
   color: var(--text-3);
 }
+
+/* The next set to log carries the screen's one lime action. */
+.next {
+  background: var(--accent);
+  color: var(--on-accent);
+}

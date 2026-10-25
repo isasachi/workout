@@ -19,7 +19,7 @@ export function thumbFor(move: Move): Promise<string> {
         try {
           scene ??= new FigureScene(document.createElement('canvas'), { preserve: true });
           scene.setSize(W, H, 2);
-          scene.setMove(move);
+          scene.setMove(move, { tight: true });
           const peak = move.keys.find((k) => k.peak) ?? move.keys[Math.min(1, move.keys.length - 1)];
           scene.setPose(solve(peak.pose, move.view));
           scene.render();

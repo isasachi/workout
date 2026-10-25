@@ -52,7 +52,7 @@ type Props = {
   label: string;
 };
 
-function Thumb({ move, label }: { move: Move; label: string }) {
+function Thumb({ move }: { move: Move }) {
   const [url, setUrl] = useState<string | null>(null);
   const [flat, setFlat] = useState(false);
   useEffect(() => {
@@ -65,8 +65,8 @@ function Thumb({ move, label }: { move: Move; label: string }) {
       alive = false;
     };
   }, [move]);
-  if (flat) return <Figure move={move} j={solve(peakPose(move), move.view)} className={s.svg} />;
-  return url ? <img className={s.img} src={url} alt="" draggable={false} /> : <span className={s.pending} aria-label={label} />;
+  if (url && !flat) return <img className={s.img} src={url} alt="" draggable={false} />;
+  return <Figure move={move} j={solve(peakPose(move), move.view)} className={`${s.svg} ${flat ? '' : s.placeholder}`} />;
 }
 
 export function DemoPlayer({ moveId, pause = false, cues = true, controls = true, still = false, className, label }: Props) {
@@ -163,7 +163,7 @@ export function DemoPlayer({ moveId, pause = false, cues = true, controls = true
     return (
       <figure className={`${s.wrap} ${className ?? ''}`}>
         <div className={s.box}>
-          <Thumb move={move} label={label} />
+          <Thumb move={move} />
         </div>
       </figure>
     );

@@ -46,8 +46,8 @@ export const shoulderOverKnees = (K: Vec, H: Vec, arm: number) => tri(K, H, KNEE
 /** Angle from one point to another. */
 export const toward = (from: Vec, to: Vec) => angleOf([to[0] - from[0], to[1] - from[1]]);
 
-const ARMS_DOWN_N: Limb = { a: [6, 10] };
-const ARMS_DOWN_F: Limb = { a: [-4, 2] };
+const ARMS_DOWN_N: Limb = { a: [3, 6] };
+const ARMS_DOWN_F: Limb = { a: [-2, 3] };
 
 export function stand(o: Partial<Pose> = {}): Pose {
   return {

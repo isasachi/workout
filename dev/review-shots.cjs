@@ -19,7 +19,10 @@ body:has([role=dialog]) #root > div:first-child{display:none!important}
   }
   const full = async (p, name) => {
     const st = await p.addStyleTag({ content: FLOW });
-    await p.waitForTimeout(500);
+    // Let the shared WebGL context finish every list thumbnail.
+    await p.waitForFunction(() => !document.querySelector('svg[class*="placeholder"]'), null, { timeout: 20000 }).catch(() => {});
+    await p.waitForFunction(() => [...document.images].every((i) => i.complete && i.naturalWidth > 0), null, { timeout: 10000 }).catch(() => {});
+    await p.waitForTimeout(1200);
     await p.screenshot({ path: `${out}/${name}.png`, fullPage: true });
     await st.evaluate((n) => n.remove());
   };

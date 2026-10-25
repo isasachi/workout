@@ -109,10 +109,14 @@
   font-stretch: 104%;
 }
 
-/* On first launch the start card sits above, so the figure gives up height to keep Empezar in view. */
+/* The stage keeps the full width and gives up height instead, so Empezar stays in the first viewport. */
+.hero > figure > div:first-child {
+  aspect-ratio: auto;
+  height: clamp(240px, 40dvh, 380px);
+}
+
 .compact > figure > div:first-child {
-  width: min(100%, calc(24dvh * 220 / 196));
-  margin: 0 auto;
+  height: clamp(200px, 30dvh, 320px);
 }
 
 .startActions {

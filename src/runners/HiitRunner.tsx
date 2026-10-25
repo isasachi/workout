@@ -156,9 +156,8 @@ export default function HiitRunner({ date }: { date: string }) {
         <DemoPlayer key={drill} moveId={DRILLS[drill].move} label={DRILLS[drill].name} controls={false} cues={false} className={s.demoTimed} />
         <p className={s.cueLine}>{DRILLS[drill].cue}</p>
         <p className={s.phaseHint}>{hint}</p>
-        {nextHome && <p className={s.note}>Después: {DRILLS[nextHome].name}</p>}
+        {nextHome && <p className={s.phaseHint}>Después: {DRILLS[nextHome].name}</p>}
 
-        <p className={s.note}>Si el último bloque te resulta imposible, la próxima vez empieza el primero más suave.</p>
       </div>
     </Overlay>
   );

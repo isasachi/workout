@@ -1,5 +1,5 @@
 import {
-  ACESFilmicToneMapping, BoxGeometry, Color, CylinderGeometry, DirectionalLight, Fog, Group,
+  ACESFilmicToneMapping, BoxGeometry, CanvasTexture, Color, MeshBasicMaterial, CylinderGeometry, DirectionalLight, Fog, Group,
   HemisphereLight, LatheGeometry, Matrix4, Mesh, MeshStandardMaterial, PCFSoftShadowMap,
   PerspectiveCamera, PlaneGeometry, Scene, SphereGeometry, SRGBColorSpace, Vector2, Vector3,
   WebGLRenderer, type BufferGeometry, type Object3D,
@@ -11,11 +11,11 @@ import type { FocusGroup, Joints, Move, Prop, Vec } from '../types';
 // World units are centimetres. The 2D rig lives in the x/y plane; side-view
 // limbs get depth on z so the body has volume and the light can model it.
 const HIP_Z = 9;
-const SHOULDER_Z = 17;
+const SHOULDER_Z = 15;
 
 const C = {
-  bg: '#0b0b0d',
-  floor: '#151518',
+  bg: '#111113',
+  floor: '#161618',
   skin: '#e7e7ec',
   focus: '#b8f23f',
   prop: '#303036',
@@ -34,9 +34,9 @@ const GEO = {
   shin: lathe([[5.5, 0], [6.4, 0.2], [5.7, 0.5], [4.1, 0.86], [3.6, 1]]),
   upperArm: lathe([[4.8, 0], [5.2, 0.24], [4.5, 0.66], [3.8, 1]]),
   forearm: lathe([[3.8, 0], [4.3, 0.18], [3.5, 0.7], [2.7, 1]]),
-  abdomen: lathe([[9.8, 0], [9.0, 0.45], [9.4, 1]]),
-  chest: lathe([[9.4, 0], [10.6, 0.3], [11.2, 0.62], [10.2, 0.86], [7.6, 1]]),
-  neck: new CylinderGeometry(4.2, 4.8, 1, 20),
+  abdomen: lathe([[10.2, 0], [8.7, 0.5], [9.2, 1]]),
+  chest: lathe([[9.2, 0], [10.4, 0.28], [11.4, 0.6], [11.2, 0.84], [9.6, 0.96], [5, 1]]),
+  neck: new CylinderGeometry(5.0, 5.8, 1, 20),
   sphere: new SphereGeometry(1, 32, 24),
 };
 // Lathe and cylinder geometry run along +y from 0 to 1 (cylinders are centred, so shift them).
@@ -171,7 +171,7 @@ class Body {
       this.pod('foot' + s, heel, toe, front, 4.4, 3.2);
       this.seg('upperArm' + s, sh, el, front);
       this.seg('forearm' + s, el, wr, front);
-      this.ball('shoulder' + s, sh, 5.6);
+      this.ball('shoulder' + s, sh, 6.2);
       this.ball('elbow' + s, el, 3.9);
       const fdir = wr.clone().sub(el).normalize();
       this.pod('hand' + s, wr.clone().addScaledVector(fdir, 0.5), wr.clone().addScaledVector(fdir, 8.5), front, 3.1, 2.3);
@@ -263,6 +263,8 @@ export class FigureScene {
     towel: new MeshStandardMaterial({ color: C.towel, roughness: 0.9 }),
   };
 
+  private blobs: Mesh[] = [];
+
   constructor(canvas?: HTMLCanvasElement, opts: { preserve?: boolean } = {}) {
     this.renderer = new WebGLRenderer({ canvas, antialias: true, alpha: false, preserveDrawingBuffer: !!opts.preserve, powerPreference: 'low-power' });
     this.renderer.outputColorSpace = SRGBColorSpace;
@@ -275,7 +277,7 @@ export class FigureScene {
     this.scene.background = new Color(C.bg);
     this.scene.fog = new Fog(C.bg, 520, 1100);
 
-    const hemi = new HemisphereLight('#e6ebff', '#1b1b20', 1.1);
+    const hemi = new HemisphereLight('#ffffff', '#1a1a1c', 1.0);
     this.scene.add(hemi);
     this.key = new DirectionalLight('#ffffff', 2.6);
     this.key.castShadow = true;
@@ -284,8 +286,9 @@ export class FigureScene {
     this.key.shadow.bias = -0.0006;
     this.key.shadow.normalBias = 0.6;
     this.scene.add(this.key, this.key.target);
-    const rim = new DirectionalLight('#a9c8ff', 1.7);
-    rim.position.set(-160, 140, -220);
+    // Rim from behind, slightly cool, to cut the silhouette away from the floor.
+    const rim = new DirectionalLight('#eef2ff', 3.2);
+    rim.position.set(-180, 110, -240);
     this.scene.add(rim);
     const bounce = new DirectionalLight('#ffffff', 0.35);
     bounce.position.set(60, -80, 160);
@@ -295,9 +298,28 @@ export class FigureScene {
     floor.rotation.x = -Math.PI / 2;
     floor.receiveShadow = true;
     this.scene.add(floor, this.body.root, this.props);
+
+    // Contact shadows: soft dark blobs where the body meets the floor.
+    const c = document.createElement('canvas');
+    c.width = c.height = 128;
+    const g = c.getContext('2d')!;
+    const grad = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+    grad.addColorStop(0, 'rgba(0,0,0,0.75)');
+    grad.addColorStop(0.55, 'rgba(0,0,0,0.32)');
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = grad;
+    g.fillRect(0, 0, 128, 128);
+    const tex = new CanvasTexture(c);
+    for (let i = 0; i < 5; i++) {
+      const b = new Mesh(new PlaneGeometry(1, 1), new MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }));
+      b.rotation.x = -Math.PI / 2;
+      b.renderOrder = 1;
+      this.blobs.push(b);
+      this.scene.add(b);
+    }
   }
 
-  setMove(move: Move) {
+  setMove(move: Move, opts: { tight?: boolean } = {}) {
     this.move = move;
     const front = move.view === 'front';
     this.body.setFocus(move.focus ?? []);
@@ -348,10 +370,13 @@ export class FigureScene {
     minX -= 14;
     maxX += 14;
     const low = maxY < 90;
-    const fw = Math.max((maxX - minX) * 1.16, (maxY - minY) * 1.16 * DEMO_ASPECT, 150);
+    // The top fifth of the stage stays clear for the player controls (not needed on thumbnails).
+    const headroom = opts.tight ? 1.06 : 1.32;
+    const fw = Math.max((maxX - minX) * (opts.tight ? 1.04 : 1.16), (maxY - minY) * headroom * DEMO_ASPECT, opts.tight ? 110 : 150);
     const fh = fw / DEMO_ASPECT;
-    // Low figures sit a little below centre so the floor reads as ground, not as the middle of the frame.
-    const center = new Vector3((minX + maxX) / 2, Math.max(fh * (low ? 0.3 : 0.4), (minY + maxY) / 2), 0);
+    // Figures sit low in the frame so the floor reads as ground and the top corner stays free.
+    const bottom = minY - fh * 0.04;
+    const center = new Vector3((minX + maxX) / 2, low ? (minY + maxY) / 2 + fh * 0.12 : Math.max(bottom + fh / 2, fh * 0.4), 0);
     const theta = ((front ? 16 : 32) * Math.PI) / 180;
     const phi = ((low ? 20 : 10) * Math.PI) / 180;
     const fov = (this.camera.fov * Math.PI) / 180;
@@ -378,6 +403,22 @@ export class FigureScene {
   setPose(j: Joints) {
     const front = this.move?.view === 'front';
     this.body.pose(j, front);
+    // Blobs fade as the touching point leaves the floor.
+    const spots: [Vec, number, number][] = [
+      [j.ankleN, front ? 0 : 9, 26],
+      [j.ankleF, front ? 0 : -9, 26],
+      [j.pelvis, 0, 44],
+      [j.wristN, front ? 0 : 15, 18],
+      [j.wristF, front ? 0 : -15, 18],
+    ];
+    spots.forEach(([p, z, size], i) => {
+      const b = this.blobs[i];
+      const k = Math.max(0, 1 - Math.max(0, p[1]) / 40); // 1 on the floor, 0 at 40 cm up
+      b.visible = k > 0.02;
+      b.position.set(p[0], 0.4, z);
+      b.scale.setScalar(size * (0.8 + (1 - k) * 0.5));
+      (b.material as MeshBasicMaterial).opacity = k;
+    });
     const zN = front ? 0 : SHOULDER_Z;
     const zF = front ? 0 : -SHOULDER_Z;
     const { towelN, towelF, knob, packHands, packBack } = this.dynamic;

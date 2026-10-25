@@ -1,0 +1,7 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{background:#000;margin:8px}img{width:240px;margin:4px;border:1px solid #333}</style></head><body><div id="r"></div><script type="module">
+import { thumbFor } from '../src/demo/three/thumbs';
+import { loadMove } from '../src/demo/registry';
+const ids = ['deadbug','superman','birddog','squat','pushup','bridge'];
+for (const id of ids) { const m = await loadMove(id); const u = await thumbFor(m); const i = document.createElement('img'); i.src = u; i.title=id; document.getElementById('r').appendChild(i); }
+const d = document.createElement('i'); d.id='done'; document.body.appendChild(d);
+</script></body></html>

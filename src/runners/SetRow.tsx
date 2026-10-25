@@ -10,10 +10,12 @@ type Props = {
   suggested: number;
   range: [number, number];
   perSide?: boolean;
+  /** The next set to log: its check is the screen's primary action. */
+  primary?: boolean;
   onLog: (v: number | null) => void;
 };
 
-export function SetRow({ index, metric, value, suggested, range, perSide, onLog }: Props) {
+export function SetRow({ index, metric, value, suggested, range, perSide, primary, onLog }: Props) {
   const [draft, setDraft] = useState(value ?? suggested);
   const watch = useStopwatch();
   const done = value !== null;
@@ -56,14 +58,14 @@ export function SetRow({ index, metric, value, suggested, range, perSide, onLog 
             <Icon name="pause" />
           </button>
         ) : (
-          <button type="button" className={s.check} onClick={watch.start} aria-label={`Empezar a contar la serie ${index + 1}`}>
+          <button type="button" className={`${s.check} ${primary ? s.next : ''}`} onClick={watch.start} aria-label={`Empezar a contar la serie ${index + 1}`}>
             <Icon name="timer" />
           </button>
         )
       ) : (
         <button
           type="button"
-          className={s.check}
+          className={`${s.check} ${primary && !done ? s.next : ''}`}
           aria-pressed={done}
           aria-label={done ? `Desmarcar serie ${index + 1}` : `Marcar serie ${index + 1} con ${draft}`}
           onClick={() => onLog(done ? null : draft)}

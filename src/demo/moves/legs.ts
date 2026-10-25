@@ -3,7 +3,7 @@ import { stand, swapSides, tempo } from '../build';
 
 // ---------- Squat family ----------
 
-const squatTop = stand({ armN: { a: [8, 12] }, armF: { a: [0, 6] } });
+const squatTop = stand({ armN: { a: [4, 8] }, armF: { a: [-2, 4] } });
 const squatBottom: Pose = {
   hip: [-27, 52],
   spine: [140, 145],
