@@ -5,12 +5,20 @@ import {
   type Object3D,
 } from 'three';
 import { DEMO_ASPECT } from '../frame';
-import { Body, SHOULDER_Z } from './body';
-import { solve } from '../rig';
+import { Body } from './body';
+import { loadMannequinData, Mannequin, type Support } from './mannequin';
+import { L, solve } from '../rig';
 import type { Joints, Move, Prop, Vec } from '../types';
 
 // World units are centimetres. The 2D rig lives in the x/y plane; side-view
 // limbs get depth on z so the body has volume and the light can model it.
+
+// The anatomical mannequin loads once; scenes built before it arrives (or if it fails) use the procedural body.
+let mannequinData: ArrayBuffer | null = null;
+export const ready: Promise<void> = loadMannequinData().then(
+  (b) => void (mannequinData = b),
+  () => undefined,
+);
 
 const C = {
   bg: '#111113',
@@ -68,15 +76,32 @@ function buildProp(p: Prop, mats: { prop: MeshStandardMaterial; dark: MeshStanda
   return g;
 }
 
+/** Where hands can rest: the floor plus the tops and faces of the props. */
+function supportsOf(props: Prop[]): Support[] {
+  const out: Support[] = [{ top: 0, x0: -1e4, x1: 1e4 }];
+  for (const p of props) {
+    const x = p.x ?? 0;
+    const s = p.flip ? -1 : 1;
+    const span = (a: number, b: number) => ({ x0: Math.min(x + a * s, x + b * s), x1: Math.max(x + a * s, x + b * s) });
+    if (p.kind === 'chair') out.push({ top: 48, ...span(-1, 41) });
+    else if (p.kind === 'counter') out.push({ top: 92, x0: x - 2, x1: x + 72 });
+    else if (p.kind === 'step') out.push({ top: 20, x0: x, x1: x + 56 });
+    else if (p.kind === 'mat') out.push({ top: 1.4, x0: x - 100, x1: x + 100 });
+    else if (p.kind === 'wallFront') out.push({ wall: x });
+  }
+  return out;
+}
+
 export class FigureScene {
   renderer: WebGLRenderer;
   private scene = new Scene();
   private camera = new PerspectiveCamera(26, DEMO_ASPECT, 10, 4000);
-  private body = new Body();
+  private body: Body | Mannequin = mannequinData ? new Mannequin(mannequinData) : new Body();
   private props = new Group();
   private dynamic: { towelN?: Mesh; towelF?: Mesh; knob?: Vector3; packHands?: Mesh; packBack?: Mesh } = {};
   private key: DirectionalLight;
   private move: Move | null = null;
+  private supports: Support[] = [];
   private mats = {
     prop: new MeshStandardMaterial({ color: C.prop, roughness: 0.72 }),
     dark: new MeshStandardMaterial({ color: C.propDark, roughness: 0.85 }),
@@ -153,6 +178,7 @@ export class FigureScene {
       c.traverse((o) => (o as Mesh).geometry?.dispose());
     }
     this.dynamic = {};
+    this.supports = supportsOf(move.props ?? []);
     for (const p of move.props ?? []) {
       if (p.kind === 'backpackHands' || p.kind === 'backpackBack') {
         const m = new Mesh(new BoxGeometry(1, 1, 1), this.mats.pack);
@@ -227,11 +253,12 @@ export class FigureScene {
 
   setPose(j: Joints) {
     const front = this.move?.view === 'front';
-    this.body.pose(j, front);
+    if (this.body instanceof Mannequin) this.body.pose(j, front, L.hipHalf, L.shoulderHalf, this.supports);
+    else this.body.pose(j, front);
     // Blobs fade as the touching point leaves the floor.
     const spots: [Vec, number, number][] = [
-      [j.ankleN, front ? 0 : 9, 26],
-      [j.ankleF, front ? 0 : -9, 26],
+      [j.ankleN, front ? 0 : L.hipHalf, 26],
+      [j.ankleF, front ? 0 : -L.hipHalf, 26],
       [j.pelvis, 0, 44],
       [j.wristN, front ? 0 : 15, 18],
       [j.wristF, front ? 0 : -15, 18],
@@ -244,8 +271,8 @@ export class FigureScene {
       b.scale.setScalar(size * (0.8 + (1 - k) * 0.5));
       (b.material as MeshBasicMaterial).opacity = k;
     });
-    const zN = front ? 0 : SHOULDER_Z;
-    const zF = front ? 0 : -SHOULDER_Z;
+    const zN = front ? 0 : L.shoulderHalf;
+    const zF = front ? 0 : -L.shoulderHalf;
     const { towelN, towelF, knob, packHands, packBack } = this.dynamic;
     const place = (m: Mesh, a: Vector3, b: Vector3) => {
       const d = b.clone().sub(a);

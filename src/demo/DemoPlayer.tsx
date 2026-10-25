@@ -12,7 +12,7 @@ type ThumbModule = typeof import('./three/thumbs');
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
 let sceneModule: Promise<SceneModule> | null = null;
-const loadScene = () => (sceneModule ??= import('./three/FigureScene'));
+const loadScene = () => (sceneModule ??= import('./three/FigureScene').then(async (m) => (await m.ready, m)));
 let thumbModule: Promise<ThumbModule> | null = null;
 const loadThumbs = () => (thumbModule ??= import('./three/thumbs'));
 

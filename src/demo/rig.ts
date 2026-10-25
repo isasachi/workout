@@ -1,17 +1,18 @@
 import type { Joints, Key, Limb, Pose, Vec } from './types';
 
+// Segment lengths (cm) match the 3D mannequin built from MakeHuman, so contacts land in both renderers.
 export const L = {
-  thigh: 44,
-  shin: 42,
-  ankle: 6,
-  lowBack: 26,
-  upBack: 27,
-  neck: 9,
+  thigh: 42,
+  shin: 43.6,
+  ankle: 7,
+  lowBack: 23,
+  upBack: 23,
+  neck: 17,
   head: 11,
-  upperArm: 30,
-  forearm: 28,
-  hipHalf: 9,
-  shoulderHalf: 17,
+  upperArm: 25.2,
+  forearm: 31.2,
+  hipHalf: 10.8,
+  shoulderHalf: 18.6,
 };
 
 const rad = (d: number) => (d * Math.PI) / 180;

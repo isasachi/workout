@@ -1,11 +1,11 @@
-import { FigureScene } from './FigureScene';
+import { FigureScene, ready } from './FigureScene';
 import { solve } from '../rig';
 import type { Move } from '../types';
 
 // One shared WebGL context renders every list thumbnail; browsers cap live contexts.
 let scene: FigureScene | null = null;
 const cache = new Map<string, string>();
-let queue = Promise.resolve();
+let queue = ready;
 
 const W = 240;
 const H = Math.round(240 / (220 / 196));

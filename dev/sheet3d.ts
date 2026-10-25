@@ -1,4 +1,4 @@
-import { FigureScene } from '../src/demo/three/FigureScene';
+import { FigureScene, ready } from '../src/demo/three/FigureScene';
 import { lerpPose, solve } from '../src/demo/rig';
 import { allMoveIds, loadMove } from '../src/demo/registry';
 
@@ -6,10 +6,11 @@ const only = new URLSearchParams(location.search).get('only')?.split(',');
 const ids = only ?? allMoveIds;
 const big = new URLSearchParams(location.search).get('big');
 const W = big ? 700 : 400, H = Math.round(W / (220 / 196));
-const scene = new FigureScene(undefined, { preserve: true });
-scene.setSize(W, H, 1);
 const root = document.getElementById('root')!;
 (async () => {
+  await ready;
+  const scene = new FigureScene(undefined, { preserve: true });
+  scene.setSize(W, H, 1);
   for (const id of ids) {
     const m = await loadMove(id);
     const row = document.createElement('div');

@@ -156,10 +156,10 @@ const shadowBox: Move = {
 
 const KNOB: Vec = [66, 95];
 function towelPose(ankleX: number, lean: number, pulled: boolean): Pose {
-  const A: Vec = [ankleX, 6];
+  const A: Vec = [ankleX, 7];
   const u = dir(180 + lean);
-  const hip: Vec = [A[0] + u[0] * 86, A[1] + u[1] * 86];
-  const S: Vec = [A[0] + u[0] * 139, A[1] + u[1] * 139];
+  const hip: Vec = [A[0] + u[0] * 85.6, A[1] + u[1] * 85.6];
+  const S: Vec = [A[0] + u[0] * 131.6, A[1] + u[1] * 131.6];
   const toKnob: Vec = [KNOB[0] - S[0], KNOB[1] - S[1]];
   const len = Math.hypot(toKnob[0], toKnob[1]);
   const hand: Vec = pulled ? [S[0] + 18, S[1] - 14] : [S[0] + (toKnob[0] / len) * 56, S[1] + (toKnob[1] / len) * 56];

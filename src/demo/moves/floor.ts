@@ -31,7 +31,7 @@ function bridge(id: string, lift: number, single = false): Move {
   return {
     id,
     view: 'side',
-    focus: ['legs'],
+    focus: ['legs', 'back'],
     frame: [-100, -10, 192],
     props: [{ kind: 'mat', x: -20 }],
     keys: [

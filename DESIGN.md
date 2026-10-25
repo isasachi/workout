@@ -23,7 +23,7 @@ colors:
   session-recovery: "#ffc24b"
   session-rest: "#636366"
   stage-floor: "#1a1a1d"
-  mannequin: "#ecebef"
+  mannequin: "#dcdce1"
 typography:
   display:
     fontFamily: "'Archivo Variable', 'Archivo', -apple-system, system-ui, sans-serif"
@@ -298,7 +298,7 @@ The interface is flat. Depth comes from the tonal ladder only: black ground, cha
 
 ## Shapes
 
-Soft and continuous. Cards, list groups, the stage, set rows, and the stats strip use 20px corners; banners, inset blocks, and Plan week cells use 14px; week-day capsules 16px; thumbnails and Progress grid rows 12px. Every button, chip, stepper, control, track, and dot is a full pill or circle. Inside a group, rows are separated by 1px hairlines; groups themselves have no border. The mannequin is built from lathed, tapered limbs and spheres for joints, head, hands, and feet: a smooth artist's figure with no face and no clothing.
+Soft and continuous. Cards, list groups, the stage, set rows, and the stats strip use 20px corners; banners, inset blocks, and Plan week cells use 14px; week-day capsules 16px; thumbnails and Progress grid rows 12px. Every button, chip, stepper, control, track, and dot is a full pill or circle. Inside a group, rows are separated by 1px hairlines; groups themselves have no border. The mannequin is an anatomical figure (MakeHuman's CC0 base mesh: an athletic young man with sculpted muscle, hands and feet, a calm face without hair) in matte clay, wearing charcoal mid-thigh shorts with straight, tailored hems. Its hands lie flat, palm down, on the floor, chair, table or wall whenever the move rests weight on them.
 
 ## Components
 
@@ -329,7 +329,7 @@ Grouped iOS-style lists on charcoal. An exercise row is 84px tall: a 64px 3D thu
 A fixed three-item tab bar on stage black: 26px line icons over 12px semibold labels, dim grey at rest, white when current, 58px tall above the safe area. Sheets close with a 44px raised-charcoal circle in the top-left.
 
 ### Technique Stage (signature)
-A 20px-cornered recess in stage black holding the three.js scene: a clay mannequin seen from a three-quarter camera (26 degree field of view) framed on everything the move reaches, with the props it needs (chair, wall, door, towel, step, backpack, mat) in charcoal. Working muscles render in lime with a faint green glow. Controls sit in the stage's top-right corner as 44px translucent dark circles (play/pause, 1x or ½x, next step), clear of the figure; the active toggle inverts to white. When WebGL is unavailable, a flat SVG figure takes its place using the demo palette.
+A 20px-cornered recess in stage black holding the three.js scene: a clay mannequin seen from a three-quarter camera (26 degree field of view) framed on everything the move reaches, with the props it needs (chair, wall, door, towel, step, backpack, mat) in charcoal. Working muscles render in lime, painted onto the muscle itself (quads, glutes, hamstrings, chest, shoulders, triceps, abs, back) with soft edges, never a whole limb. Controls sit in the stage's top-right corner as 44px translucent dark circles (play/pause, 1x or ½x, next step), clear of the figure; the active toggle inverts to white. When WebGL is unavailable, a flat SVG figure takes its place using the demo palette.
 
 ### Step List
 Directly under the stage, every step of the rep is listed at once, 17px, 10px apart, each with a 9px dot. Steps not current are dim grey with high-charcoal dots; the current step turns white and semibold and its dot turns lime and grows to 1.25x, over 360ms. Timed sessions replace the list with one fixed 19px cue per move that changes only when the move does.

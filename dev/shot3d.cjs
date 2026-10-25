@@ -7,7 +7,7 @@ const { chromium } = require('playwright');
   p.on('pageerror', (e) => errs.push(e.message));
   p.on('console', (m) => (m.type() === 'error' || m.type() === 'warning') && errs.push(m.text()));
   await p.goto(url);
-  await p.waitForSelector('#done', { timeout: 90000, state: 'attached' });
+  await p.waitForSelector('#done', { timeout: 280000, state: 'attached' });
   await p.screenshot({ path: out, fullPage: true });
   if (errs.length) console.log('ERRORS', errs.slice(0, 8).join('\n'));
   await b.close();

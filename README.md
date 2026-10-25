@@ -27,6 +27,7 @@ Stack: React 18, TypeScript, Vite, vite-plugin-pwa y three.js para las demos en 
 src/
   data/       el plan: ejercicios y variantes, sesiones, semanas y guía
   demo/       motor de las figuras: rig.ts (posturas), three/ (maniquí 3D), Figure.tsx (versión plana de respaldo)
+    three/mannequin/  malla anatómica con esqueleto, generada por dev/mannequin/build.py
     moves/    las posturas de cada movimiento, en cuatro grupos que se cargan por separado
   lib/        fechas, guardado en el teléfono y reglas de progresión
   screens/    pestañas Hoy, Plan y Progreso, y las fichas
@@ -38,6 +39,12 @@ dev/          hojas de contacto de las posturas y scripts de capturas (no se pub
 ### Añadir o corregir un movimiento
 
 Cada movimiento es una lista de posturas clave con su tiempo y su indicación. Los ángulos se miden en grados: 0 apunta hacia abajo, 90 hacia delante y 180 hacia arriba. Con `npm run dev` abierto, `http://localhost:5173/dev/sheet3d.html?only=squat,pushup` dibuja las posturas en 3D en una hoja para revisarlas (`dev/sheet.html` las dibuja planas).
+
+### El maniquí
+
+El cuerpo 3D sale de la malla base, el esqueleto y los pesos de [MakeHuman](https://github.com/makehumancommunity/makehuman) (assets bajo CC0 1.0, dominio público): un hombre joven atlético con pantalón corto. `dev/mannequin/build.py` lo exporta a `src/demo/three/mannequin/` (≈450 KB). En cada fotograma, `three/mannequin.ts` orienta cada segmento del cuerpo según las articulaciones del rig, apoya las manos planas sobre el suelo, la silla, la mesa o la pared, y resalta en lima los músculos que trabaja el ejercicio. Si la malla no carga, se dibuja el maniquí simple de `three/body.ts`.
+
+Para regenerarla: `python3 -I dev/mannequin/build.py <makehuman>/makehuman/data src/demo/three/mannequin`.
 
 ## Publicar en Vercel
 

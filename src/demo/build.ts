@@ -3,8 +3,8 @@ import type { Key, Limb, Pose, Vec } from './types';
 /** Inverse of `dir`: the absolute angle of a vector. */
 export const angleOf = (v: Vec) => (Math.atan2(v[0], -v[1]) * 180) / Math.PI;
 
-const BODY = 139; // ankle to shoulder with a straight body
-const KNEEL = 97; // knee to shoulder
+const BODY = 131.6; // ankle to shoulder with a straight body
+const KNEEL = 88; // knee to shoulder
 
 /** Point S with |S-A| = la and |S-H| = lh, on the upper side of the A→H line. */
 export function tri(A: Vec, H: Vec, la: number, lh: number): Vec {
@@ -25,7 +25,7 @@ export function bodyLine(A: Vec, S: Vec) {
   const v: Vec = [S[0] - A[0], S[1] - A[1]];
   const len = Math.hypot(v[0], v[1]);
   const u: Vec = [v[0] / len, v[1] / len];
-  const legLen = 86 * Math.min(1, len / BODY);
+  const legLen = 85.6 * Math.min(1, len / BODY);
   const a = angleOf(u);
   return { hip: [A[0] + u[0] * legLen, A[1] + u[1] * legLen] as Vec, spine: [a, a] as [number, number], head: a };
 }
@@ -35,7 +35,7 @@ export function kneelLine(K: Vec, S: Vec) {
   const v: Vec = [S[0] - K[0], S[1] - K[1]];
   const len = Math.hypot(v[0], v[1]);
   const u: Vec = [v[0] / len, v[1] / len];
-  const t = 44 * Math.min(1, len / KNEEL);
+  const t = 42 * Math.min(1, len / KNEEL);
   const a = angleOf(u);
   return { hip: [K[0] + u[0] * t, K[1] + u[1] * t] as Vec, spine: [a, a] as [number, number], head: a, thigh: a - 180 };
 }
