@@ -15,8 +15,7 @@
 
 .date {
   font-size: 15px;
-  font-weight: 600;
-  color: var(--text-2);
+  color: var(--text-3);
 }
 
 .title {
@@ -71,20 +70,22 @@
 .startCard {
   display: grid;
   gap: 12px;
-  padding: 20px;
+  padding: 16px;
   border-radius: var(--r-card);
   background: var(--surface);
 }
 
 .startTitle {
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 700;
 }
 
-.startText {
-  font-size: 16px;
-  color: var(--text-2);
+/* On first launch the start card sits above, so the figure gives up height to keep Empezar in view. */
+.compact > figure > div:first-child {
+  width: min(100%, calc(28dvh * 220 / 196));
+  margin: 0 auto;
 }
+
 
 .startActions {
   display: flex;

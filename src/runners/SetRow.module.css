@@ -90,6 +90,16 @@
 .check[aria-pressed='true'] {
   background: var(--accent);
   color: var(--on-accent);
+  animation: pop 320ms var(--ease);
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.82);
+  }
+  60% {
+    transform: scale(1.08);
+  }
 }
 
 .stop {

@@ -68,20 +68,20 @@ export const WARMUP: { items: DrillItem[]; last: string } = {
   items: [
     { drill: 'march', dose: '2½ min' },
     { drill: 'jack-step', dose: '2½ min' },
-    { drill: 'hip-circles', dose: '10 por lado' },
+    { drill: 'hip-circles', dose: '10 por\u00a0lado' },
     { drill: 'cat-cow', dose: '10' },
-    { drill: 'thoracic', dose: '10 por lado' },
+    { drill: 'thoracic', dose: '10 por\u00a0lado' },
     { drill: 'bridge', dose: '10' },
     { drill: 'wall-angels', dose: '10' },
   ],
   last: 'Termina con una serie suave del primer ejercicio, en su variante más fácil: 8 repeticiones.',
 };
 
-export type CardioOption = { id: string; name: string; detail: string; drills: string[]; rotateMin?: number };
+export type CardioOption = { id: string; name: string; short: string; detail: string; drills: string[]; rotateMin?: number };
 export const CARDIO_OPTIONS: CardioOption[] = [
-  { id: 'walk', name: 'Caminata rápida', detail: 'La mejor opción. Al aire libre y con cuestas si las tienes cerca.', drills: ['walk'] },
-  { id: 'stairs', name: 'Escaleras', detail: 'Sube y baja a ritmo constante.', drills: ['step-up'] },
-  { id: 'circuit', name: 'Circuito en casa', detail: '3 min por ejercicio, sin parar, y vuelta a empezar.', drills: ['march', 'step-up', 'shadow-box', 'jack-step'], rotateMin: 3 },
+  { id: 'walk', name: 'Caminata rápida', short: 'Caminata', detail: 'La mejor opción. Al aire libre y con cuestas si las tienes cerca.', drills: ['walk'] },
+  { id: 'stairs', name: 'Escaleras', short: 'Escaleras', detail: 'Sube y baja a ritmo constante.', drills: ['step-up'] },
+  { id: 'circuit', name: 'Circuito en casa', short: 'Circuito', detail: '3 min por ejercicio, sin parar, y vuelta a empezar.', drills: ['march', 'step-up', 'shadow-box', 'jack-step'], rotateMin: 3 },
 ];
 
 export const HIIT_HOME = ['high-knees', 'squat-fast', 'skater', 'climber'];
@@ -89,9 +89,9 @@ export const HIIT_HOME = ['high-knees', 'squat-fast', 'skater', 'climber'];
 export const RECOVERY: { walk: string; items: DrillItem[] } = {
   walk: '20–30 min de caminata a ritmo cómodo (RPE 2–3), mejor al aire libre o después de comer.',
   items: [
-    { drill: 'deep-squat-hold', dose: '2 × 30 s' },
-    { drill: 'hip-flexor', dose: '2 × 30 s por lado' },
-    { drill: 'thoracic', dose: '10 por lado' },
+    { drill: 'deep-squat-hold', dose: '2 × 30\u00a0s' },
+    { drill: 'hip-flexor', dose: '2 × 30\u00a0s por\u00a0lado' },
+    { drill: 'thoracic', dose: '10 por\u00a0lado' },
   ],
 };
 

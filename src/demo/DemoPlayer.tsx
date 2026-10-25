@@ -92,25 +92,29 @@ export function DemoPlayer({ moveId, pause = false, cues = true, controls = true
       <div ref={box} className={s.box}>
         <Figure move={move} j={joints} className={s.svg} />
         {!still && <span className="sr-only">{label}</span>}
-        {controls && !still && (
-          <div className={s.controls}>
-            <button type="button" className={s.ctrl} onClick={() => setPlaying((p) => !p)} aria-label={playing ? 'Pausar demo' : 'Reproducir demo'}>
-              <Icon name={playing ? 'pause' : 'play'} />
-            </button>
-            {playing ? (
-              <button type="button" className={`${s.ctrl} ${slow ? s.on : ''}`} onClick={() => setSlow((x) => !x)} aria-pressed={slow}>
-                <span className={s.speed}>{slow ? '½×' : '1×'}</span>
-                <span className="sr-only">Cámara lenta</span>
-              </button>
-            ) : (
-              <button type="button" className={s.ctrl} onClick={nextStep} aria-label="Siguiente paso">
-                <Icon name="next" />
-              </button>
-            )}
-          </div>
-        )}
       </div>
-      {cues && !still && <figcaption className={s.cue}>{cue}</figcaption>}
+      {!still && (cues || controls) && (
+        <div className={s.under}>
+          {cues ? <figcaption className={s.cue}>{cue}</figcaption> : <span />}
+          {controls && (
+            <div className={s.controls}>
+              <button type="button" className={s.ctrl} onClick={() => setPlaying((p) => !p)} aria-label={playing ? 'Pausar demo' : 'Reproducir demo'}>
+                <Icon name={playing ? 'pause' : 'play'} />
+              </button>
+              {playing ? (
+                <button type="button" className={`${s.ctrl} ${slow ? s.on : ''}`} onClick={() => setSlow((x) => !x)} aria-pressed={slow}>
+                  <span className={s.speed}>{slow ? '½×' : '1×'}</span>
+                  <span className="sr-only">Cámara lenta</span>
+                </button>
+              ) : (
+                <button type="button" className={s.ctrl} onClick={nextStep} aria-label="Siguiente paso">
+                  <Icon name="next" />
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      )}
     </figure>
   );
 }

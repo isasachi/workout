@@ -72,9 +72,12 @@ export default function StrengthRunner({ session, date }: { session: 'A' | 'B'; 
     <div className={s.footer}>
       {rest.active && (
         <div className={s.rest} role="timer" aria-live="off">
-          <span className={s.restLabel}>Descansa</span>
-          <span className={`num ${s.restTime}`}>{clock(rest.left)}</span>
-          <button type="button" className="btn btn-quiet" onClick={rest.stop}>Saltar</button>
+          <span className={s.restText}>
+            <span className={s.restLabel}>Descansa</span>
+            <span className={`num ${s.restTime}`}>{clock(rest.left)}</span>
+            <span className={s.restHint}>{rest.left > 30_000 ? 'Puedes seguir a partir de 1:00' : 'Prepárate para la siguiente serie'}</span>
+          </span>
+          <button type="button" className="btn btn-secondary" onClick={rest.stop}>Saltar</button>
         </div>
       )}
       <div className={s.navRow}>

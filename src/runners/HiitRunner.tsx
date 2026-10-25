@@ -71,7 +71,7 @@ export default function HiitRunner({ date }: { date: string }) {
   } else if (ph.kind === 'hard') {
     if (where === 'home') {
       drill = HIIT_HOME[Math.floor(inPhase / 30000) % HIIT_HOME.length];
-      hint = `${DRILLS[drill].name}: cambia cada 30 s. Duro pero sostenible (RPE 8).`;
+      hint = `${DRILLS[drill].name}: cambia cada 30\u00a0s. Duro pero sostenible (RPE 8).`;
     } else {
       drill = 'high-knees';
       hint = 'Caminata muy rápida o trote suave cuesta arriba, o escaleras rápido. RPE 8.';
@@ -92,21 +92,38 @@ export default function HiitRunner({ date }: { date: string }) {
   const footer = (
     <div className={s.footer}>
       <div className={s.navRow}>
-        {t > 0 ? (
-          <button type="button" className="btn btn-primary" onClick={save}>Terminar y guardar</button>
-        ) : (
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={() => {
-              saveLog({ date, session: 'hiit', cycle: pos.cycle, week: pos.week, done: true, minutes: hiitTotal(hiitFor(pos.week)), option: where });
-              nav.close();
-            }}
-          >
-            Lo hice sin el móvil
+        <button
+          type="button"
+          className={`btn ${watch.running ? 'btn-secondary' : 'btn-primary'}`}
+          disabled={finished}
+          onClick={() => {
+            unlockAudio();
+            if (watch.running) watch.pause();
+            else watch.start();
+          }}
+        >
+          {watch.running ? 'Pausar' : t > 0 ? 'Seguir' : 'Empezar'}
+        </button>
+        {t > 0 && !finished && (
+          <button type="button" className={`btn btn-secondary ${s.flexNone}`} onClick={() => setSkip((x) => x + left)}>
+            Saltar fase
           </button>
         )}
       </div>
+      {t > 0 ? (
+        <button type="button" className="btn btn-quiet" onClick={save}>Terminar y guardar</button>
+      ) : (
+        <button
+          type="button"
+          className="btn btn-quiet"
+          onClick={() => {
+            saveLog({ date, session: 'hiit', cycle: pos.cycle, week: pos.week, done: true, minutes: hiitTotal(hiitFor(pos.week)), option: where });
+            nav.close();
+          }}
+        >
+          Lo hice sin el móvil
+        </button>
+      )}
     </div>
   );
 
@@ -132,26 +149,10 @@ export default function HiitRunner({ date }: { date: string }) {
           ))}
         </div>
 
-        <DemoPlayer key={drill} moveId={DRILLS[drill].move} label={DRILLS[drill].name} cues={false} className={s.demo} />
         <p className={s.phaseHint}>{hint}</p>
+        <DemoPlayer key={drill} moveId={DRILLS[drill].move} label={DRILLS[drill].name} className={s.demo} />
         {nextHome && <p className={s.note}>Después: {DRILLS[nextHome].name}</p>}
 
-        <div className={s.navRow}>
-          <button
-            type="button"
-            className={`btn ${watch.running ? 'btn-secondary' : 'btn-primary'}`}
-            disabled={finished}
-            onClick={() => {
-              unlockAudio();
-              watch.running ? watch.pause() : watch.start();
-            }}
-          >
-            {watch.running ? 'Pausar' : t > 0 ? 'Seguir' : 'Empezar'}
-          </button>
-          <button type="button" className="btn btn-secondary" disabled={finished} onClick={() => setSkip((x) => x + left)}>
-            Saltar fase
-          </button>
-        </div>
         <p className={s.note}>Si el último bloque te resulta imposible, la próxima vez empieza el primero más suave.</p>
       </div>
     </Overlay>

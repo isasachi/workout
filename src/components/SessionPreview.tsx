@@ -14,8 +14,8 @@ export function slotDose(slot: Slot, week: number) {
   const ex = EXERCISES[slot.exercise];
   const [lo, hi] = slot.reps;
   const range = lo === hi ? `${lo}` : `${lo}–${hi}`;
-  const unit = ex.metric === 'secs' ? ' s' : '';
-  return `${setsFor(slot, week)} × ${range}${unit}${ex.perSide ? ' por lado' : ''}`;
+  const unit = ex.metric === 'secs' ? '\u00a0s' : '';
+  return `${setsFor(slot, week)} × ${range}${unit}${ex.perSide ? ' por\u00a0lado' : ''}`;
 }
 
 export function StrengthList({ id, week }: { id: 'A' | 'B'; week: number }) {
@@ -113,7 +113,7 @@ export function SessionPreview({ id, week }: { id: SessionId; week: number }) {
           </section>
           <section className={s.section}>
             <h2 className={s.h2}>En casa: 30 s de cada uno, sin parar</h2>
-            <DrillList items={HIIT_HOME.map((d) => ({ drill: d, dose: '30 s' }))} />
+            <DrillList items={HIIT_HOME.map((d) => ({ drill: d, dose: '30\u00a0s' }))} />
             <p className={s.note}>Fuera de casa: caminata muy rápida o trote suave cuesta arriba, o escaleras rápido, y bajas caminando para recuperar. Sin saltos las primeras 4 semanas.</p>
           </section>
         </div>

@@ -35,5 +35,5 @@ export function readyToLevelUp(entries: Entry[], slot: Slot, level: number, sets
 export const formatValues = (values: (number | null)[], metric: 'reps' | 'secs') =>
   values
     .filter((v): v is number => v !== null)
-    .map((v) => (metric === 'secs' ? `${v} s` : String(v)))
+    .map((v) => (metric === 'secs' ? `${v}\u00a0s` : String(v)))
     .join(' · ');

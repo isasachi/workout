@@ -48,27 +48,21 @@ export default function RecoveryRunner({ date }: { date: string }) {
 
         <h2 className={s.h1}>Movilidad</h2>
         <ul className="list">
-          {RECOVERY.items.map((it) => (
-            <li key={it.drill}>
-              <ExerciseRow
-                move={DRILLS[it.drill].move}
-                name={DRILLS[it.drill].name}
-                detail={it.dose}
-                aside={
-                  <span className={s.rowActions}>
-                    <button type="button" className="btn btn-quiet" onClick={() => nav.open({ type: 'exercise', exercise: it.drill })}>
-                      Demo
-                    </button>
-                    <button type="button" className={`${s.box} ${s.boxBtn} ${checked[it.drill] ? s.boxOn : ''}`} aria-pressed={!!checked[it.drill]}
-                      aria-label={`Marcar ${DRILLS[it.drill].name}`} onClick={() => setChecked((c) => ({ ...c, [it.drill]: !c[it.drill] }))}>
-                      {checked[it.drill] && <Icon name="check" size={22} />}
-                    </button>
-                  </span>
-                }
-              />
-            </li>
-          ))}
+          {RECOVERY.items.map((it) => {
+            const on = !!checked[it.drill];
+            return (
+              <li key={it.drill} className={s.doRow}>
+                <ExerciseRow move={DRILLS[it.drill].move} name={DRILLS[it.drill].name} detail={it.dose}
+                  onClick={() => nav.open({ type: 'exercise', exercise: it.drill })} chevron={false} />
+                <button type="button" className={`${s.doCheck} ${on ? s.doCheckOn : ''}`} aria-pressed={on}
+                  aria-label={`${DRILLS[it.drill].name} hecho`} onClick={() => setChecked((c) => ({ ...c, [it.drill]: !on }))}>
+                  <Icon name="check" size={24} />
+                </button>
+              </li>
+            );
+          })}
         </ul>
+        <p className={s.note}>Toca un movimiento para ver la demo; marca el círculo cuando lo termines.</p>
       </div>
     </Overlay>
   );

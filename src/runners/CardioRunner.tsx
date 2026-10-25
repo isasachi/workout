@@ -34,19 +34,26 @@ export default function CardioRunner({ date }: { date: string }) {
     nav.close();
   };
 
+  const toggle = () => {
+    unlockAudio();
+    if (watch.running) watch.pause();
+    else watch.start();
+  };
+
   const footer = (
     <div className={s.footer}>
-      <div className={s.navRow}>
-        {watch.elapsed > 0 ? (
-          <button type="button" className="btn btn-primary" onClick={() => save(Math.max(1, Math.round(min)))}>
-            Terminar y guardar {Math.max(1, Math.round(min))} min
-          </button>
-        ) : (
-          <button type="button" className="btn btn-secondary" onClick={() => save(target)}>
-            Lo hice sin el móvil: {target} min
-          </button>
-        )}
-      </div>
+      <button type="button" className={`btn ${watch.running ? 'btn-secondary' : 'btn-primary'} btn-block`} onClick={toggle}>
+        {watch.running ? 'Pausar' : watch.elapsed > 0 ? 'Seguir' : 'Empezar'}
+      </button>
+      {watch.elapsed > 0 ? (
+        <button type="button" className="btn btn-quiet" onClick={() => save(Math.max(1, Math.round(min)))}>
+          Terminar y guardar {Math.max(1, Math.round(min))}&nbsp;min
+        </button>
+      ) : (
+        <button type="button" className="btn btn-quiet" onClick={() => save(target)}>
+          Lo hice sin el móvil: guardar {target}&nbsp;min
+        </button>
+      )}
     </div>
   );
 
@@ -62,14 +69,12 @@ export default function CardioRunner({ date }: { date: string }) {
         <div className={s.chips} role="group" aria-label="Cómo hacerlo">
           {CARDIO_OPTIONS.map((o) => (
             <button key={o.id} type="button" className={s.chip} aria-pressed={o.id === option} onClick={() => setOption(o.id)} disabled={watch.running}>
-              {o.name}
+              {o.short}
             </button>
           ))}
         </div>
-        <DemoPlayer key={drill} moveId={DRILLS[drill].move} label={DRILLS[drill].name} cues={false} className={s.demo} />
-        <p className={s.phaseHint}>
-          {opt.rotateMin ? `${DRILLS[drill].name}: ${DRILLS[drill].cue.toLowerCase()}. Cambia cada ${opt.rotateMin} min.` : opt.detail}
-        </p>
+        <p className={s.note}>{opt.rotateMin ? `${opt.detail} Ahora: ${DRILLS[drill].name}.` : opt.detail}</p>
+        <DemoPlayer key={drill} moveId={DRILLS[drill].move} label={DRILLS[drill].name} className={s.demo} />
         <div className={s.timerBlock} role="timer">
           <span className={`num ${s.bigTime}`}>{clock(watch.elapsed)}</span>
           <span className={s.timerSub}>de {target}:00</span>
@@ -79,16 +84,6 @@ export default function CardioRunner({ date }: { date: string }) {
         </div>
         <p className={s.phase}>{st.name}</p>
         <p className={s.phaseHint}>{st.hint}</p>
-        <button
-          type="button"
-          className={`btn ${watch.running ? 'btn-secondary' : 'btn-primary'} btn-block`}
-          onClick={() => {
-            unlockAudio();
-            watch.running ? watch.pause() : watch.start();
-          }}
-        >
-          {watch.running ? 'Pausar' : watch.elapsed > 0 ? 'Seguir' : 'Empezar'}
-        </button>
       </div>
     </Overlay>
   );

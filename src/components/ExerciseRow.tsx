@@ -10,9 +10,11 @@ type Props = {
   detail?: ReactNode;
   aside?: ReactNode;
   onClick?: () => void;
+  /** Hide the chevron when the row sits beside its own action. */
+  chevron?: boolean;
 };
 
-export function ExerciseRow({ move, pause, name, detail, aside, onClick }: Props) {
+export function ExerciseRow({ move, pause, name, detail, aside, onClick, chevron = true }: Props) {
   const content = (
     <>
       <DemoPlayer moveId={move} pause={pause} still cues={false} controls={false} className={s.thumb} label={name} />
@@ -21,7 +23,7 @@ export function ExerciseRow({ move, pause, name, detail, aside, onClick }: Props
         {detail && <span className={s.detail}>{detail}</span>}
       </span>
       {aside}
-      {onClick && <span className={s.chev}><Icon name="chevron" size={20} /></span>}
+      {onClick && chevron && <span className={s.chev}><Icon name="chevron" size={20} /></span>}
     </>
   );
   return onClick ? (

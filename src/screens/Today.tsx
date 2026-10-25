@@ -24,20 +24,16 @@ export function heroFor(id: SessionId, st: State): { move: string; pause?: boole
 function StartCard() {
   const now = useNow();
   const monday = nextMonday(now);
-  const isMonday = now.getDay() === 1;
   return (
     <section className={s.startCard}>
-      <h2 className={s.startTitle}>¿Cuándo empiezas?</h2>
-      <p className={s.startText}>El plan dura 8 semanas y va subiendo poco a poco. La app calcula en qué semana estás a partir de este día.</p>
+      <h2 className={s.startTitle}>¿Cuándo empiezas las 8 semanas?</h2>
       <div className={s.startActions}>
         <button type="button" className="btn btn-primary" onClick={() => setStartDate(isoDay(now))}>
           Hoy
         </button>
-        {!isMonday && (
-          <button type="button" className="btn btn-secondary" onClick={() => setStartDate(monday)}>
-            El lunes {shortDate(parseDay(monday))}
-          </button>
-        )}
+        <button type="button" className="btn btn-secondary" onClick={() => setStartDate(monday)}>
+          Lunes {shortDate(parseDay(monday))}
+        </button>
       </div>
     </section>
   );
@@ -62,9 +58,9 @@ export function Today() {
     return (
       <div className={s.screen}>
         <header className={s.head}>
-          <p className={s.date}>{DAY_NAMES[now.getDay()]}, {shortDate(now)}</p>
           <h1 className={s.title}>Empiezas el {DAY_NAMES[first.getDay()].toLowerCase()} {shortDate(first)}</h1>
           <p className={s.meta}>Primer día: {info.title} · {info.duration}</p>
+          <p className={s.date}>Hoy es {DAY_NAMES[now.getDay()].toLowerCase()} {shortDate(now)}</p>
         </header>
         <ul className="list">
           <li>
@@ -88,9 +84,6 @@ export function Today() {
     <div className={s.screen}>
       {!st.startDate && <StartCard />}
       <header className={s.head}>
-        <p className={s.date}>
-          {DAY_NAMES[now.getDay()]}, {shortDate(now)} · Semana {pos.week} de 8{pos.cycle > 1 ? ` · Ciclo ${pos.cycle}` : ''}
-        </p>
         <h1 className={s.title}>
           <span className={s.dot} style={{ background: KIND_COLOR[info.kind] }} aria-hidden="true" />
           {info.title}
@@ -98,10 +91,13 @@ export function Today() {
         <p className={s.meta}>
           {info.kind === 'rest' ? info.subtitle : `${info.duration} · ${info.intensity}`}
         </p>
+        <p className={s.date}>
+          {DAY_NAMES[now.getDay()]} {shortDate(now)} · Semana {pos.week} de 8{pos.cycle > 1 ? ` · Ciclo ${pos.cycle}` : ''}
+        </p>
       </header>
 
       {hero && (
-        <section className={s.hero}>
+        <section className={`${s.hero} ${!st.startDate ? s.compact : ''}`}>
           <DemoPlayer moveId={hero.move} pause={hero.pause} label={hero.label} />
           {log?.done ? (
             <div className={s.done}>

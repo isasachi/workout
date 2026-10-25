@@ -151,6 +151,8 @@
 
 .dataActions > :global(.btn) {
   flex: 1 1 140px;
+  padding: 0 16px;
+  white-space: nowrap;
 }
 
 .startRow {
