@@ -130,17 +130,21 @@ export default function HiitRunner({ date }: { date: string }) {
   return (
     <Overlay title="HIIT por intervalos" meta={`${Math.round(totalMs / 60000)} min en total`} footer={footer}>
       <div className={s.screen}>
-        {log?.done && log.session === 'hiit' && <div className={s.doneBanner}>Ya registraste esta sesión: {log.minutes} min.</div>}
-        <div className={s.chips} role="group" aria-label="Dónde">
-          <button type="button" className={s.chip} aria-pressed={where === 'home'} onClick={() => setWhere('home')}>En casa</button>
-          <button type="button" className={s.chip} aria-pressed={where === 'out'} onClick={() => setWhere('out')}>Fuera de casa</button>
-        </div>
+        {t === 0 && (
+          <>
+            {log?.done && log.session === 'hiit' && <div className={s.doneBanner}>Ya registraste esta sesión: {log.minutes} min.</div>}
+            <div className={s.chips} role="group" aria-label="Dónde">
+              <button type="button" className={s.chip} aria-pressed={where === 'home'} onClick={() => setWhere('home')}>En casa</button>
+              <button type="button" className={s.chip} aria-pressed={where === 'out'} onClick={() => setWhere('out')}>Fuera de casa</button>
+            </div>
+          </>
+        )}
 
         <p className={s.phase} style={{ color: ph.kind === 'hard' ? 'var(--c-hiit)' : undefined }}>
           {finished ? 'Sesión completada' : ph.kind === 'hard' ? `${LABEL.hard} ${ph.block! + 1} de ${hardBlocks.length}` : LABEL[ph.kind]}
         </p>
         <div className={s.timerBlock} role="timer">
-          <span className={`num ${s.bigTime}`}>{clock(finished ? 0 : left)}</span>
+          <span className={`num ${s.bigTime} ${s.timeMid}`}>{clock(finished ? 0 : left)}</span>
           <span className={s.timerSub}>Total {clock(t)} de {clock(totalMs)}</span>
         </div>
         <div className={s.blocks} aria-hidden="true">
@@ -149,8 +153,8 @@ export default function HiitRunner({ date }: { date: string }) {
           ))}
         </div>
 
+        <DemoPlayer key={drill} moveId={DRILLS[drill].move} label={DRILLS[drill].name} controls={false} className={s.demoTimed} />
         <p className={s.phaseHint}>{hint}</p>
-        <DemoPlayer key={drill} moveId={DRILLS[drill].move} label={DRILLS[drill].name} className={s.demo} />
         {nextHome && <p className={s.note}>Después: {DRILLS[nextHome].name}</p>}
 
         <p className={s.note}>Si el último bloque te resulta imposible, la próxima vez empieza el primero más suave.</p>

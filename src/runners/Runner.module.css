@@ -120,7 +120,7 @@
 .restLabel {
   font-size: 17px;
   font-weight: 700;
-  color: var(--c-cardio);
+  color: var(--text-2);
 }
 
 .restTime {
@@ -287,8 +287,17 @@
 
 /* Keep the demo short enough that the sets or the timer fit on the first screen. */
 .demo > div {
-  width: min(100%, calc(34dvh * 220 / 196));
+  width: min(100%, calc(30dvh * 220 / 196));
   margin: 0 auto;
+}
+
+.demoTimed > div {
+  width: min(100%, calc(25dvh * 220 / 196));
+  margin: 0 auto;
+}
+
+.timeMid {
+  font-size: 72px;
 }
 
 .flexNone {

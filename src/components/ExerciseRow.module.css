@@ -1,8 +1,8 @@
 .row {
   display: grid;
-  grid-template-columns: 76px 1fr auto auto;
+  grid-template-columns: 64px 1fr auto auto;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   width: 100%;
   min-height: 84px;
   padding: 10px 14px 10px 10px;

@@ -66,17 +66,21 @@ export default function CardioRunner({ date }: { date: string }) {
             <button type="button" className="btn btn-quiet" onClick={() => { removeLog(date); }}>borrarlo</button>
           </div>
         )}
-        <div className={s.chips} role="group" aria-label="Cómo hacerlo">
-          {CARDIO_OPTIONS.map((o) => (
-            <button key={o.id} type="button" className={s.chip} aria-pressed={o.id === option} onClick={() => setOption(o.id)} disabled={watch.running}>
-              {o.short}
-            </button>
-          ))}
-        </div>
-        <p className={s.note}>{opt.rotateMin ? `${opt.detail} Ahora: ${DRILLS[drill].name}.` : opt.detail}</p>
-        <DemoPlayer key={drill} moveId={DRILLS[drill].move} label={DRILLS[drill].name} className={s.demo} />
+        {watch.elapsed === 0 && (
+          <>
+          <div className={s.chips} role="group" aria-label="Cómo hacerlo">
+            {CARDIO_OPTIONS.map((o) => (
+              <button key={o.id} type="button" className={s.chip} aria-pressed={o.id === option} onClick={() => setOption(o.id)} disabled={watch.running}>
+                {o.short}
+              </button>
+            ))}
+          </div>
+          <p className={s.note}>{opt.rotateMin ? `${opt.detail} Ahora: ${DRILLS[drill].name}.` : opt.detail}</p>
+          </>
+        )}
+        <DemoPlayer key={drill} moveId={DRILLS[drill].move} label={DRILLS[drill].name} controls={false} className={s.demoTimed} />
         <div className={s.timerBlock} role="timer">
-          <span className={`num ${s.bigTime}`}>{clock(watch.elapsed)}</span>
+          <span className={`num ${s.bigTime} ${s.timeMid}`}>{clock(watch.elapsed)}</span>
           <span className={s.timerSub}>de {target}:00</span>
         </div>
         <div className={s.bar}>
@@ -84,6 +88,9 @@ export default function CardioRunner({ date }: { date: string }) {
         </div>
         <p className={s.phase}>{st.name}</p>
         <p className={s.phaseHint}>{st.hint}</p>
+        {watch.elapsed > 0 && opt.rotateMin && (
+          <p className={s.note}>Ahora: {DRILLS[drill].name}. Cambia cada {opt.rotateMin}&nbsp;min.</p>
+        )}
       </div>
     </Overlay>
   );

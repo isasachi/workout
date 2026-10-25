@@ -95,7 +95,7 @@ export function DemoPlayer({ moveId, pause = false, cues = true, controls = true
       </div>
       {!still && (cues || controls) && (
         <div className={s.under}>
-          {cues ? <figcaption className={s.cue}>{cue}</figcaption> : <span />}
+          {cues && <figcaption className={s.cue}>{cue}</figcaption>}
           {controls && (
             <div className={s.controls}>
               <button type="button" className={s.ctrl} onClick={() => setPlaying((p) => !p)} aria-label={playing ? 'Pausar demo' : 'Reproducir demo'}>
