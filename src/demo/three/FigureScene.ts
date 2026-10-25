@@ -1,21 +1,20 @@
 import {
-  ACESFilmicToneMapping, BoxGeometry, CanvasTexture, Color, MeshBasicMaterial, CylinderGeometry, DirectionalLight, Fog, Group,
-  HemisphereLight, LatheGeometry, Matrix4, Mesh, MeshStandardMaterial, PCFSoftShadowMap,
-  PerspectiveCamera, PlaneGeometry, Scene, SphereGeometry, SRGBColorSpace, Vector2, Vector3,
-  WebGLRenderer, type BufferGeometry, type Object3D,
+  ACESFilmicToneMapping, BoxGeometry, CanvasTexture, Color, CylinderGeometry, DirectionalLight, Fog, Group,
+  HemisphereLight, Mesh, MeshBasicMaterial, MeshLambertMaterial, MeshStandardMaterial, PCFSoftShadowMap,
+  PerspectiveCamera, PlaneGeometry, Scene, SphereGeometry, SRGBColorSpace, Vector3, WebGLRenderer,
+  type Object3D,
 } from 'three';
 import { DEMO_ASPECT } from '../frame';
+import { Body, SHOULDER_Z } from './body';
 import { solve } from '../rig';
-import type { FocusGroup, Joints, Move, Prop, Vec } from '../types';
+import type { Joints, Move, Prop, Vec } from '../types';
 
 // World units are centimetres. The 2D rig lives in the x/y plane; side-view
 // limbs get depth on z so the body has volume and the light can model it.
-const HIP_Z = 9;
-const SHOULDER_Z = 15;
 
 const C = {
   bg: '#111113',
-  floor: '#161618',
+  floor: '#1a1a1d',
   skin: '#e7e7ec',
   focus: '#b8f23f',
   prop: '#303036',
@@ -25,184 +24,7 @@ const C = {
   mat: '#24242a',
 };
 
-const lathe = (profile: [number, number][]) =>
-  new LatheGeometry(profile.map(([r, y]) => new Vector2(r, y)), 28);
-
-// Muscle profiles: radius in cm along the normalised length of each segment.
-const GEO = {
-  thigh: lathe([[0.1, 0], [7.4, 0.02], [8.6, 0.16], [8.1, 0.48], [6.4, 0.86], [5.6, 1]]),
-  shin: lathe([[5.5, 0], [6.4, 0.2], [5.7, 0.5], [4.1, 0.86], [3.6, 1]]),
-  upperArm: lathe([[4.8, 0], [5.2, 0.24], [4.5, 0.66], [3.8, 1]]),
-  forearm: lathe([[3.8, 0], [4.3, 0.18], [3.5, 0.7], [2.7, 1]]),
-  abdomen: lathe([[10.2, 0], [8.7, 0.5], [9.2, 1]]),
-  chest: lathe([[9.2, 0], [10.4, 0.28], [11.4, 0.6], [11.2, 0.84], [9.6, 0.96], [5, 1]]),
-  neck: new CylinderGeometry(5.0, 5.8, 1, 20),
-  sphere: new SphereGeometry(1, 32, 24),
-};
-// Lathe and cylinder geometry run along +y from 0 to 1 (cylinders are centred, so shift them).
-GEO.neck.translate(0, 0.5, 0);
-
-type Side = 'N' | 'F';
-
-class Body {
-  root = new Group();
-  private skin: MeshStandardMaterial;
-  private focusMat: MeshStandardMaterial;
-  private parts: Record<string, Mesh> = {};
-  private groups: Record<string, FocusGroup | 'body'> = {};
-
-  constructor() {
-    this.skin = new MeshStandardMaterial({ color: C.skin, roughness: 0.46, metalness: 0.02 });
-    this.focusMat = new MeshStandardMaterial({ color: C.focus, roughness: 0.42, metalness: 0.02, emissive: new Color('#1d2c00') });
-    const add = (name: string, geo: BufferGeometry, group: FocusGroup | 'body') => {
-      const m = new Mesh(geo, this.skin);
-      m.castShadow = true;
-      m.receiveShadow = true;
-      m.matrixAutoUpdate = false;
-      this.root.add(m);
-      this.parts[name] = m;
-      this.groups[name] = group;
-    };
-    for (const s of ['N', 'F'] as Side[]) {
-      add('thigh' + s, GEO.thigh, 'legs');
-      add('shin' + s, GEO.shin, 'legs');
-      add('knee' + s, GEO.sphere, 'legs');
-      add('ankle' + s, GEO.sphere, 'legs');
-      add('foot' + s, GEO.sphere, 'legs');
-      add('hip' + s, GEO.sphere, 'legs');
-      add('upperArm' + s, GEO.upperArm, 'arms');
-      add('forearm' + s, GEO.forearm, 'arms');
-      add('shoulder' + s, GEO.sphere, 'arms');
-      add('elbow' + s, GEO.sphere, 'arms');
-      add('hand' + s, GEO.sphere, 'arms');
-    }
-    add('pelvis', GEO.sphere, 'core');
-    add('abdomen', GEO.abdomen, 'core');
-    add('chest', GEO.chest, 'back');
-    add('neck', GEO.neck, 'body');
-    add('head', GEO.sphere, 'body');
-  }
-
-  setFocus(focus: FocusGroup[]) {
-    const f = new Set(focus);
-    for (const [name, mesh] of Object.entries(this.parts)) {
-      const g = this.groups[name];
-      const lit = g !== 'body' && (f.has(g as FocusGroup) || ((name === 'chest' || name === 'abdomen' || name === 'pelvis') && (f.has('core') || f.has('back'))));
-      mesh.material = lit ? this.focusMat : this.skin;
-    }
-  }
-
-  dispose() {
-    this.skin.dispose();
-    this.focusMat.dispose();
-  }
-
-  /**
-   * Places a mesh along a→b. Local y follows the segment; `lat` and `dep` scale
-   * the width across the body and the depth front-to-back.
-   */
-  private seg(name: string, a: Vector3, b: Vector3, front: boolean, lat = 1, dep = 1, extend = 0) {
-    const m = this.parts[name];
-    const up = b.clone().sub(a);
-    let len = up.length();
-    if (len < 1e-4) {
-      up.set(0, 1, 0);
-      len = 1e-4;
-    }
-    up.divideScalar(len);
-    const start = extend ? a.clone().addScaledVector(up, -extend) : a;
-    len += extend * 2;
-    let L: Vector3;
-    let D: Vector3;
-    if (front) {
-      D = new Vector3(0, 0, 1);
-      L = new Vector3().crossVectors(D, up).normalize();
-      if (L.lengthSq() < 1e-6) L.set(1, 0, 0);
-      D = new Vector3().crossVectors(up, L).normalize();
-    } else {
-      L = new Vector3(0, 0, 1);
-      D = new Vector3().crossVectors(up, L).normalize();
-      if (D.lengthSq() < 1e-6) D.set(1, 0, 0);
-    }
-    const basis = new Matrix4().makeBasis(D.multiplyScalar(dep), up.multiplyScalar(len), L.multiplyScalar(lat));
-    basis.setPosition(start);
-    m.matrix.copy(basis);
-    m.matrixWorldNeedsUpdate = true;
-  }
-
-  private ball(name: string, p: Vector3, r: number, sx = 1, sy = 1, sz = 1) {
-    const m = this.parts[name];
-    m.matrix.makeScale(r * sx, r * sy, r * sz).setPosition(p);
-    m.matrixWorldNeedsUpdate = true;
-  }
-
-  /** Ellipsoid along a→b, `w` across the body, `t` thick. */
-  private pod(name: string, a: Vector3, b: Vector3, front: boolean, w: number, t: number) {
-    const mid = a.clone().add(b).multiplyScalar(0.5);
-    const half = Math.max(0.5, a.distanceTo(b) / 2);
-    this.parts[name].matrix.copy(this.basisAt(mid, b.clone().sub(a), front, t, half, w));
-    this.parts[name].matrixWorldNeedsUpdate = true;
-  }
-
-  pose(j: Joints, front: boolean) {
-    const V = (v: Vec, z = 0) => new Vector3(v[0], v[1], z);
-    const zN = front ? 0 : HIP_Z;
-    const zF = front ? 0 : -HIP_Z;
-    const sN = front ? 0 : SHOULDER_Z;
-    const sF = front ? 0 : -SHOULDER_Z;
-
-    for (const s of ['N', 'F'] as Side[]) {
-      const z = s === 'N' ? zN : zF;
-      const sz = s === 'N' ? sN : sF;
-      const hip = V(s === 'N' ? j.hipN : j.hipF, z);
-      const knee = V(s === 'N' ? j.kneeN : j.kneeF, z);
-      const ankle = V(s === 'N' ? j.ankleN : j.ankleF, z);
-      const heel = V(s === 'N' ? j.heelN : j.heelF, z);
-      const toe = V(s === 'N' ? j.toeN : j.toeF, z);
-      const sh = V(s === 'N' ? j.shN : j.shF, sz);
-      const el = V(s === 'N' ? j.elbowN : j.elbowF, sz);
-      const wr = V(s === 'N' ? j.wristN : j.wristF, sz);
-
-      this.seg('thigh' + s, hip, knee, front);
-      this.seg('shin' + s, knee, ankle, front);
-      this.ball('hip' + s, hip, 7.6);
-      this.ball('knee' + s, knee, 5.7);
-      this.ball('ankle' + s, ankle, 3.7);
-      this.pod('foot' + s, heel, toe, front, 4.4, 3.2);
-      this.seg('upperArm' + s, sh, el, front);
-      this.seg('forearm' + s, el, wr, front);
-      this.ball('shoulder' + s, sh, 6.2);
-      this.ball('elbow' + s, el, 3.9);
-      const fdir = wr.clone().sub(el).normalize();
-      this.pod('hand' + s, wr.clone().addScaledVector(fdir, 0.5), wr.clone().addScaledVector(fdir, 8.5), front, 3.1, 2.3);
-    }
-
-    const pelvis = V(j.pelvis);
-    const mid = V(j.mid);
-    const shoulder = V(j.shoulder);
-    const head = V(j.headC);
-    const lat = front ? 1.5 : 1.62;
-    this.pod('pelvis', pelvis.clone().addScaledVector(mid.clone().sub(pelvis).normalize(), -7), pelvis.clone().addScaledVector(mid.clone().sub(pelvis).normalize(), 9), front, 14.5, 9.5);
-    this.seg('abdomen', pelvis, mid, front, lat, 1.0);
-    this.seg('chest', mid, shoulder, front, lat, 1.02, 1.5);
-    const neckBase = shoulder.clone().addScaledVector(head.clone().sub(shoulder).normalize(), -2);
-    const neckTop = shoulder.clone().addScaledVector(head.clone().sub(shoulder).normalize(), 10);
-    this.seg('neck', neckBase, neckTop, front);
-    const hd = head.clone().sub(shoulder).normalize();
-    this.parts.head.matrix.copy(this.basisAt(head, hd, front, 9.6, 11.4, 9.0));
-    this.parts.head.matrixWorldNeedsUpdate = true;
-  }
-
-  private basisAt(p: Vector3, up: Vector3, front: boolean, dep: number, len: number, lat: number) {
-    const u = up.clone().normalize();
-    let L = front ? new Vector3().crossVectors(new Vector3(0, 0, 1), u).normalize() : new Vector3(0, 0, 1);
-    if (L.lengthSq() < 1e-6) L = new Vector3(1, 0, 0);
-    const D = new Vector3().crossVectors(u, L).normalize();
-    return new Matrix4().makeBasis(D.multiplyScalar(dep), u.multiplyScalar(len), L.multiplyScalar(lat)).setPosition(p);
-  }
-}
-
-const box = (w: number, h: number, d: number, mat: MeshStandardMaterial, x: number, y: number, z: number) => {
+const box = (w: number, h: number, d: number, mat: MeshStandardMaterial | MeshLambertMaterial, x: number, y: number, z: number) => {
   const m = new Mesh(new BoxGeometry(w, h, d), mat);
   m.position.set(x, y, z);
   m.castShadow = true;
@@ -210,7 +32,7 @@ const box = (w: number, h: number, d: number, mat: MeshStandardMaterial, x: numb
   return m;
 };
 
-function buildProp(p: Prop, mats: { prop: MeshStandardMaterial; dark: MeshStandardMaterial; mat: MeshStandardMaterial; pack: MeshStandardMaterial }, front: boolean): Object3D {
+function buildProp(p: Prop, mats: { prop: MeshStandardMaterial; dark: MeshStandardMaterial; mat: MeshStandardMaterial | MeshLambertMaterial; pack: MeshStandardMaterial }, front: boolean): Object3D {
   const g = new Group();
   const x = p.x ?? 0;
   const s = p.flip ? -1 : 1;
@@ -258,7 +80,7 @@ export class FigureScene {
   private mats = {
     prop: new MeshStandardMaterial({ color: C.prop, roughness: 0.72 }),
     dark: new MeshStandardMaterial({ color: C.propDark, roughness: 0.85 }),
-    mat: new MeshStandardMaterial({ color: C.mat, roughness: 0.95 }),
+    mat: new MeshLambertMaterial({ color: C.mat }),
     pack: new MeshStandardMaterial({ color: C.pack, roughness: 0.6 }),
     towel: new MeshStandardMaterial({ color: C.towel, roughness: 0.9 }),
   };
@@ -287,14 +109,17 @@ export class FigureScene {
     this.key.shadow.normalBias = 0.6;
     this.scene.add(this.key, this.key.target);
     // Rim from behind, slightly cool, to cut the silhouette away from the floor.
-    const rim = new DirectionalLight('#eef2ff', 3.2);
-    rim.position.set(-180, 110, -240);
-    this.scene.add(rim);
+    const rim = new DirectionalLight('#eef2ff', 5.5);
+    rim.position.set(-220, 150, -260);
+    const rim2 = new DirectionalLight('#f4f6ff', 3.2);
+    rim2.position.set(240, 220, -200);
+    this.scene.add(rim, rim2);
     const bounce = new DirectionalLight('#ffffff', 0.35);
     bounce.position.set(60, -80, 160);
     this.scene.add(bounce);
 
-    const floor = new Mesh(new PlaneGeometry(3000, 3000), new MeshStandardMaterial({ color: C.floor, roughness: 0.92 }));
+    // Matte floor: no specular sheen from the backlights at grazing angles.
+    const floor = new Mesh(new PlaneGeometry(3000, 3000), new MeshLambertMaterial({ color: C.floor }));
     floor.rotation.x = -Math.PI / 2;
     floor.receiveShadow = true;
     this.scene.add(floor, this.body.root, this.props);
@@ -342,7 +167,7 @@ export class FigureScene {
       if (p.kind === 'door') {
         const x = p.x ?? 0;
         this.dynamic.knob = new Vector3(x - 4, 95, 0);
-        const knob = new Mesh(GEO.sphere, this.mats.prop);
+        const knob = new Mesh(new SphereGeometry(1, 20, 14), this.mats.prop);
         knob.scale.setScalar(3.2);
         knob.position.copy(this.dynamic.knob);
         this.props.add(knob);

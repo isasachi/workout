@@ -144,7 +144,8 @@ export function DemoPlayer({ moveId, pause = false, cues = true, controls = true
     const tick = (now: number) => {
       const dt = Math.min(64, now - last);
       last = now;
-      if (visible.current && !document.hidden) {
+      // Skip frames while hidden: off screen, tab in background, or covered by an overlay (inert shell).
+      if (visible.current && !document.hidden && !box.current?.closest('[inert]')) {
         t.current += dt * (slow ? 0.5 : 1);
         const r = sample(move.keys, segs, t.current);
         draw(r.pose);

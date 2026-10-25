@@ -4,7 +4,8 @@ import { allMoveIds, loadMove } from '../src/demo/registry';
 
 const only = new URLSearchParams(location.search).get('only')?.split(',');
 const ids = only ?? allMoveIds;
-const W = 400, H = 356;
+const big = new URLSearchParams(location.search).get('big');
+const W = big ? 700 : 400, H = Math.round(W / (220 / 196));
 const scene = new FigureScene(undefined, { preserve: true });
 scene.setSize(W, H, 1);
 const root = document.getElementById('root')!;
@@ -16,13 +17,14 @@ const root = document.getElementById('root')!;
     row.innerHTML = `<b>${id}</b>`;
     root.appendChild(row);
     scene.setMove(m);
-    const frames = m.keys.flatMap((k, i) => [k.pose, lerpPose(k.pose, m.keys[(i + 1) % m.keys.length].pose, 0.5)]).slice(0, 6);
+    const frames = m.keys.flatMap((k, i) => [k.pose, lerpPose(k.pose, m.keys[(i + 1) % m.keys.length].pose, 0.5)]).slice(0, big ? 2 : 6);
     for (const p of frames) {
       scene.setPose(solve(p, m.view));
       scene.render();
       const c = document.createElement('canvas');
       c.width = W; c.height = H;
       c.getContext('2d')!.drawImage(scene.renderer.domElement, 0, 0);
+      if (big) c.style.width = '660px';
       row.appendChild(c);
     }
   }
