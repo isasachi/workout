@@ -3,8 +3,10 @@
   color-scheme: dark;
 
   --bg: #000;
-  --surface: #1c1c1e;
-  --surface-2: #2c2c2e;
+  --surface: #161618;
+  --surface-2: #262629;
+  --surface-3: #3a3a3e;
+  --stage: #0b0b0d;
   --line: #2c2c2e;
   --bar: #111113;
   --text: #fff;
@@ -36,7 +38,8 @@
   --demo-mat: #2a2a2e;
 
   --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Segoe UI', Roboto, sans-serif;
-  --font-num: ui-rounded, 'SF Pro Rounded', -apple-system, system-ui, sans-serif;
+  --font-display: 'Archivo Variable', 'Archivo', -apple-system, system-ui, sans-serif;
+  --font-num: 'Archivo Variable', 'Archivo', ui-rounded, -apple-system, system-ui, sans-serif;
 
   --r-card: 20px;
   --r-inner: 14px;
@@ -113,6 +116,15 @@ h3 {
 .num {
   font-family: var(--font-num);
   font-variant-numeric: tabular-nums;
+  font-stretch: 82%;
+}
+
+/* Display voice: wide, heavy Archivo for titles; condensed Archivo for the big numbers. */
+.display {
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 800;
+  letter-spacing: -0.025em;
 }
 
 /* Shared controls */
@@ -143,6 +155,10 @@ h3 {
 .btn-primary {
   background: var(--accent);
   color: var(--on-accent);
+  font-family: var(--font-display);
+  font-stretch: 108%;
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .btn-secondary {

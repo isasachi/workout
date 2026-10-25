@@ -1,7 +1,8 @@
 import type { FocusGroup, Joints, Move, Prop, Vec } from './types';
 
-export const DEMO_ASPECT = 220 / 196;
-const DEFAULT_FRAME: [number, number, number] = [-110, -12, 220];
+import { DEFAULT_FRAME, DEMO_ASPECT } from './frame';
+
+export { DEMO_ASPECT };
 
 const P = (v: Vec) => `${v[0].toFixed(1)},${(-v[1]).toFixed(1)}`;
 

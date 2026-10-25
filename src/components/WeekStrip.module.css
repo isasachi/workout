@@ -1,0 +1,68 @@
+.strip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.day {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  width: 100%;
+  padding: 8px 0 10px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--text-2);
+  transition: background-color 200ms var(--ease), transform 140ms var(--ease);
+}
+
+.day:active {
+  transform: scale(0.95);
+}
+
+.today {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.letter {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.date {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  border-radius: 999px;
+  border: 2px solid var(--kind);
+  color: var(--on-accent);
+}
+
+.rest {
+  width: 8px;
+  height: 8px;
+  margin: 8px 0 6px;
+  border: 0;
+  background: var(--surface-3);
+}
+
+.today .rest {
+  background: #c7c7cc;
+}
+
+.done .mark {
+  background: var(--kind);
+}

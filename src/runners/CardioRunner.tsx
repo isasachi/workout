@@ -78,7 +78,8 @@ export default function CardioRunner({ date }: { date: string }) {
           <p className={s.note}>{opt.rotateMin ? `${opt.detail} Ahora: ${DRILLS[drill].name}.` : opt.detail}</p>
           </>
         )}
-        <DemoPlayer key={drill} moveId={DRILLS[drill].move} label={DRILLS[drill].name} controls={false} className={s.demoTimed} />
+        <DemoPlayer key={drill} moveId={DRILLS[drill].move} label={DRILLS[drill].name} controls={false} cues={false} className={s.demoTimed} />
+        <p className={s.cueLine}>{DRILLS[drill].cue}</p>
         <div className={s.timerBlock} role="timer">
           <span className={`num ${s.bigTime} ${s.timeMid}`}>{clock(watch.elapsed)}</span>
           <span className={s.timerSub}>de {target}:00</span>

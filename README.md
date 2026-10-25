@@ -19,14 +19,14 @@ npm run build    # genera dist/
 npm run preview  # sirve dist/ en http://localhost:4173
 ```
 
-Stack: React 18, TypeScript, Vite y vite-plugin-pwa. Cada pantalla, cada tipo de sesión y cada grupo de animaciones se carga por separado.
+Stack: React 18, TypeScript, Vite, vite-plugin-pwa y three.js para las demos en 3D. Cada pantalla, cada tipo de sesión, cada grupo de animaciones y el motor 3D se cargan por separado.
 
 ## Estructura
 
 ```
 src/
   data/       el plan: ejercicios y variantes, sesiones, semanas y guía
-  demo/       motor de las figuras animadas (rig.ts, Figure.tsx, DemoPlayer.tsx)
+  demo/       motor de las figuras: rig.ts (posturas), three/ (maniquí 3D), Figure.tsx (versión plana de respaldo)
     moves/    las posturas de cada movimiento, en cuatro grupos que se cargan por separado
   lib/        fechas, guardado en el teléfono y reglas de progresión
   screens/    pestañas Hoy, Plan y Progreso, y las fichas
@@ -37,7 +37,7 @@ dev/          hojas de contacto de las posturas y scripts de capturas (no se pub
 
 ### Añadir o corregir un movimiento
 
-Cada movimiento es una lista de posturas clave con su tiempo y su indicación. Los ángulos se miden en grados: 0 apunta hacia abajo, 90 hacia delante y 180 hacia arriba. Con `npm run dev` abierto, `http://localhost:5173/dev/sheet.html?only=squat,pushup` dibuja las posturas en una hoja para revisarlas.
+Cada movimiento es una lista de posturas clave con su tiempo y su indicación. Los ángulos se miden en grados: 0 apunta hacia abajo, 90 hacia delante y 180 hacia arriba. Con `npm run dev` abierto, `http://localhost:5173/dev/sheet3d.html?only=squat,pushup` dibuja las posturas en 3D en una hoja para revisarlas (`dev/sheet.html` las dibuja planas).
 
 ## Publicar en Vercel
 

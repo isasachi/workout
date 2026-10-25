@@ -1,4 +1,4 @@
-import { DAY_NAMES, KIND_COLOR, SCHEDULE, STRENGTH, sessionInfo, phaseOf, type SessionId } from '../data/plan';
+import { DAY_NAMES, KIND_COLOR, SCHEDULE, STRENGTH, cardioMinutes, hiitFor, hiitTotal, sessionInfo, phaseOf, type SessionId } from '../data/plan';
 import { EXERCISES } from '../data/exercises';
 import { DemoPlayer } from '../demo/DemoPlayer';
 import { SessionPreview } from '../components/SessionPreview';
@@ -8,6 +8,8 @@ import { levelOf } from '../lib/progress';
 import { setStartDate, useStore, type State } from '../lib/store';
 import { useDay, useNow } from '../lib/today';
 import { useNav } from '../nav';
+import { Icon } from '../components/Icon';
+import { WeekStrip } from '../components/WeekStrip';
 import s from './Today.module.css';
 
 export function heroFor(id: SessionId, st: State): { move: string; pause?: boolean; label: string } | null {
@@ -21,12 +23,48 @@ export function heroFor(id: SessionId, st: State): { move: string; pause?: boole
   return null;
 }
 
+/** Three headline numbers for the session, read before starting. */
+function statsFor(id: SessionId, week: number): { value: string; label: string }[] {
+  const ph = phaseOf(week);
+  switch (id) {
+    case 'A':
+    case 'B':
+      return [
+        { value: '35–45', label: 'Minutos' },
+        { value: String(STRENGTH[id].length), label: 'Ejercicios' },
+        { value: ph.rir, label: 'RIR' },
+      ];
+    case 'cardio':
+      return [
+        { value: String(cardioMinutes(week)), label: 'Minutos' },
+        { value: '4–5', label: 'RPE' },
+        { value: '3', label: 'Opciones' },
+      ];
+    case 'hiit': {
+      const h = hiitFor(week);
+      return [
+        { value: String(hiitTotal(h)), label: 'Minutos' },
+        { value: `${h.blocks}×${h.hard}`, label: 'Bloques' },
+        { value: '8', label: 'RPE' },
+      ];
+    }
+    case 'recovery':
+      return [
+        { value: '20–30', label: 'Minutos' },
+        { value: '3', label: 'Movilidad' },
+        { value: '2–3', label: 'RPE' },
+      ];
+    default:
+      return [];
+  }
+}
+
 function StartCard() {
   const now = useNow();
   const monday = nextMonday(now);
   return (
     <section className={s.startCard}>
-      <h2 className={s.startTitle}>¿Cuándo empiezas las 8 semanas?</h2>
+      <h2 className={`display ${s.startTitle}`}>¿Cuándo empiezas las 8 semanas?</h2>
       <div className={s.startActions}>
         <button type="button" className="btn btn-primary" onClick={() => setStartDate(isoDay(now))}>
           Hoy
@@ -58,7 +96,7 @@ export function Today() {
     return (
       <div className={s.screen}>
         <header className={s.head}>
-          <h1 className={s.title}>Empiezas el {DAY_NAMES[first.getDay()].toLowerCase()} {shortDate(first)}</h1>
+          <h1 className={`display ${s.title}`}>Empiezas el {DAY_NAMES[first.getDay()].toLowerCase()} {shortDate(first)}</h1>
           <p className={s.meta}>Primer día: {info.title} · {info.duration}</p>
           <p className={s.date}>Hoy es {DAY_NAMES[now.getDay()].toLowerCase()} {shortDate(now)}</p>
         </header>
@@ -80,34 +118,47 @@ export function Today() {
   const tomorrowInfo = sessionInfo(SCHEDULE[tomorrow.getDay()], pos.week);
   const anyLogged = !!log && (log.done || Object.values(log.sets ?? {}).some((x) => x.values.some((v) => v !== null)));
 
+  const stats = statsFor(day.id, pos.week);
+
   return (
     <div className={s.screen}>
       {!st.startDate && <StartCard />}
       <header className={s.head}>
-        <h1 className={s.title}>
-          <span className={s.dot} style={{ background: KIND_COLOR[info.kind] }} aria-hidden="true" />
-          {info.title}
-        </h1>
+        <h1 className={`display ${s.title}`}>{info.title}</h1>
         <p className={s.meta}>
-          {info.kind === 'rest' ? info.subtitle : `${info.duration} · ${info.intensity}`}
+          <span className={s.dot} style={{ background: KIND_COLOR[info.kind] }} aria-hidden="true" />
+          {info.subtitle}
         </p>
         <p className={s.date}>
-          {DAY_NAMES[now.getDay()]} {shortDate(now)} · Semana {pos.week} de 8{pos.cycle > 1 ? ` · Ciclo ${pos.cycle}` : ''}
+          {DAY_NAMES[now.getDay()]} {shortDate(now)} · Semana {pos.week} de 8 · {phaseOf(pos.week).name}{pos.cycle > 1 ? ` · Ciclo ${pos.cycle}` : ''}
         </p>
       </header>
 
+      <WeekStrip now={now} cycle={pos.cycle} week={pos.week} started={pos.started} />
+
       {hero && (
         <section className={`${s.hero} ${!st.startDate ? s.compact : ''}`}>
-          <DemoPlayer moveId={hero.move} pause={hero.pause} label={hero.label} />
+          <DemoPlayer moveId={hero.move} pause={hero.pause} label={hero.label} cues={false} />
+          {stats.length > 0 && (
+            <dl className={s.stats}>
+              {stats.map((x) => (
+                <div key={x.label} className={s.stat}>
+                  <dt>{x.label}</dt>
+                  <dd className="num">{x.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
           {log?.done ? (
             <div className={s.done}>
-              <p className={s.doneText}>Sesión hecha. Buen trabajo.</p>
+              <p className={`display ${s.doneText}`}>Sesión hecha</p>
               <button type="button" className="btn btn-secondary btn-block" onClick={() => nav.open({ type: 'session', session: day.id, date: today })}>
                 Ver o editar el registro
               </button>
             </div>
           ) : (
             <button type="button" className={`btn btn-primary btn-block ${s.start}`} onClick={() => nav.open({ type: 'session', session: day.id, date: today })}>
+              <Icon name="play" size={22} />
               {anyLogged ? 'Continuar' : 'Empezar'}
             </button>
           )}
@@ -119,7 +170,7 @@ export function Today() {
 
       {info.kind === 'rest' && (
         <section className={s.next}>
-          <h2 className={s.h2}>Mañana</h2>
+          <h2 className={`display ${s.h2}`}>Mañana</h2>
           <ul className="list">
             <li>
               <ExerciseRow move={heroFor(SCHEDULE[tomorrow.getDay()], st)?.move ?? 'walk'} name={tomorrowInfo.title} detail={`${tomorrowInfo.duration} · ${tomorrowInfo.intensity}`}

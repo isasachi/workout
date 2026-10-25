@@ -1,6 +1,6 @@
 .screen {
   display: grid;
-  gap: 28px;
+  gap: 24px;
 }
 
 .skeleton {
@@ -9,8 +9,28 @@
 
 .head {
   display: grid;
-  gap: 4px;
-  padding-top: 8px;
+  gap: 6px;
+  padding-top: 10px;
+}
+
+.title {
+  font-size: 44px;
+  line-height: 1;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  color: var(--text);
+}
+
+.dot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
 }
 
 .date {
@@ -18,36 +38,46 @@
   color: var(--text-3);
 }
 
-.title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 34px;
-  line-height: 1.1;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+.hero {
+  display: grid;
+  gap: 14px;
 }
 
-.dot {
-  flex: none;
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  border-radius: var(--r-card);
+  background: var(--surface);
 }
 
-.meta {
-  font-size: 17px;
+.stat {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px 16px;
+}
+
+.stat + .stat {
+  border-left: 1px solid var(--line); /* taste-skill-ignore: divider inside one stats group */
+}
+
+.stat dt {
+  font-size: 13px;
+  font-weight: 600;
   color: var(--text-2);
 }
 
-.hero {
-  display: grid;
-  gap: 16px;
+.stat dd {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
 }
 
 .start {
   min-height: 64px;
-  font-size: 20px;
+  font-size: 21px;
 }
 
 .done {
@@ -56,8 +86,7 @@
 }
 
 .doneText {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 26px;
   color: var(--accent);
 }
 
@@ -76,16 +105,15 @@
 }
 
 .startTitle {
-  font-size: 19px;
-  font-weight: 700;
+  font-size: 20px;
+  font-stretch: 104%;
 }
 
 /* On first launch the start card sits above, so the figure gives up height to keep Empezar in view. */
 .compact > figure > div:first-child {
-  width: min(100%, calc(28dvh * 220 / 196));
+  width: min(100%, calc(24dvh * 220 / 196));
   margin: 0 auto;
 }
-
 
 .startActions {
   display: flex;
@@ -103,8 +131,7 @@
 }
 
 .h2 {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 24px;
 }
 
 .phase {

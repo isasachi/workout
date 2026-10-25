@@ -1,7 +1,7 @@
 const { chromium } = require('playwright');
 const out = process.argv[2];
 (async () => {
-  const b = await chromium.launch();
+  const b = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const errs = [];
   async function day(when, name, steps) {
     const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });

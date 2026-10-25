@@ -63,12 +63,12 @@ function Warmup() {
   return (
     <section className={s.section}>
       <div className={s.rowHead}>
-        <h2 className={s.h2}>Calentamiento · 10 min</h2>
+        <h2 className={s.h2}>Calentamiento</h2>
         <button type="button" className="btn btn-quiet" aria-expanded={open} onClick={() => setOpen((x) => !x)}>
-          {open ? 'Ocultar' : `Ver los ${WARMUP.items.length}`}
+          {open ? 'Ocultar' : 'Ver'}
         </button>
       </div>
-      {open ? <DrillList items={WARMUP.items} /> : <p className={s.note}>Antes de empezar: marcha, movilidad y activación, sin cansarte. La sesión guiada te lo muestra paso a paso.</p>}
+      {open ? <DrillList items={WARMUP.items} /> : <p className={s.note}>10 min y {WARMUP.items.length} movimientos antes de empezar: marcha, movilidad y activación, sin cansarte. La sesión guiada te lo muestra paso a paso.</p>}
       {open && <p className={s.note}>{WARMUP.last}</p>}
     </section>
   );

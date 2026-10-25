@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const out = process.argv[2];
 const when = process.argv[3] || '2026-10-26T10:00:00';
 (async () => {
-  const b = await chromium.launch();
+  const b = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
   const p = await ctx.newPage();
   await p.clock.install({ time: new Date(when) });

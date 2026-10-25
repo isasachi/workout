@@ -9,10 +9,12 @@
 }
 
 .h1 {
-  font-size: 28px;
+  font-family: var(--font-display);
+  font-stretch: 112%;
   font-weight: 800;
+  letter-spacing: -0.025em;
+  font-size: 28px;
   line-height: 1.15;
-  letter-spacing: -0.01em;
 }
 
 .needs {
@@ -36,8 +38,11 @@
 }
 
 .h2 {
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 800;
+  letter-spacing: -0.025em;
   font-size: 20px;
-  font-weight: 700;
 }
 
 .cues,

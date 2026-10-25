@@ -153,7 +153,8 @@ export default function HiitRunner({ date }: { date: string }) {
           ))}
         </div>
 
-        <DemoPlayer key={drill} moveId={DRILLS[drill].move} label={DRILLS[drill].name} controls={false} className={s.demoTimed} />
+        <DemoPlayer key={drill} moveId={DRILLS[drill].move} label={DRILLS[drill].name} controls={false} cues={false} className={s.demoTimed} />
+        <p className={s.cueLine}>{DRILLS[drill].cue}</p>
         <p className={s.phaseHint}>{hint}</p>
         {nextHome && <p className={s.note}>Después: {DRILLS[nextHome].name}</p>}
 

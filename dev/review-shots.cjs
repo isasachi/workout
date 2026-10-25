@@ -6,7 +6,7 @@ body:has([role=dialog]) #root > div:first-child{display:none!important}
 [role=dialog]{position:static!important;animation:none!important}
 [role=dialog] > div{overflow:visible!important}`;
 (async () => {
-  const b = await chromium.launch();
+  const b = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const errs = [];
   async function ctxAt(when, w = 390, h = 844) {
     const ctx = await b.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 2, isMobile: w < 600, hasTouch: w < 600 });

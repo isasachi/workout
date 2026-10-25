@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { registerSW } from 'virtual:pwa-register';
 import { App } from './App';
 import { boot } from './lib/store';
+import '@fontsource-variable/archivo/wdth.css';
 import './styles/global.css';
 
 registerSW({ immediate: true });

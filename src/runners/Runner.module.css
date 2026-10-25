@@ -4,10 +4,12 @@
 }
 
 .h1 {
-  font-size: 30px;
+  font-family: var(--font-display);
+  font-stretch: 112%;
   font-weight: 800;
+  letter-spacing: -0.025em;
+  font-size: 30px;
   line-height: 1.12;
-  letter-spacing: -0.01em;
 }
 
 .h2 {
@@ -195,8 +197,11 @@
 }
 
 .phase {
-  font-size: 24px;
+  font-family: var(--font-display);
+  font-stretch: 112%;
   font-weight: 800;
+  letter-spacing: -0.025em;
+  font-size: 24px;
   text-align: center;
   text-wrap: balance;
 }
@@ -307,4 +312,12 @@
 .chips > .chip {
   flex: 1 1 0;
   white-space: nowrap;
+}
+
+/* One fixed line per move during timed sessions: it changes only when the move does. */
+.cueLine {
+  font-size: 19px;
+  font-weight: 600;
+  text-align: center;
+  text-wrap: balance;
 }

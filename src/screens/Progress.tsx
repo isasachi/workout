@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { EXERCISES } from '../data/exercises';
 import { DAY_SHORT, KIND_COLOR, SCHEDULE, STRENGTH, WEEK_ORDER, sessionInfo, setsFor } from '../data/plan';
 import { Icon } from '../components/Icon';
+import { DemoPlayer } from '../demo/DemoPlayer';
 import { datesOfWeek, isoDay, nextMonday, parseDay, shortDate, weekPos } from '../lib/dates';
 import { formatValues, historyOf, levelOf, readyToLevelUp } from '../lib/progress';
 import { exportData, importData, resetAll, setStartDate, useStore } from '../lib/store';
@@ -124,7 +125,7 @@ export default function Progress() {
         <h1 className={s.title}>Progreso</h1>
         {st.startDate && here.started && (
           <p className={s.meta}>
-            Semana {here.week} de 8 · <span className="num">{doneThisWeek} de {planned}</span> sesiones esta semana · <span className="num">{total}</span> en total
+            Semana {here.week} de 8 · {doneThisWeek} de {planned} sesiones esta semana · {total} en total
           </p>
         )}
       </header>
@@ -147,6 +148,7 @@ export default function Progress() {
             return (
               <li key={id}>
                 <button type="button" className={s.exRow} onClick={() => nav.open({ type: 'history', exercise: id })}>
+                  <DemoPlayer moveId={ex.ladder[level].move} still cues={false} controls={false} className={s.thumb} label={ex.ladder[level].name} />
                   <span className={s.exText}>
                     <span className={s.exName}>{ex.ladder[level].name}</span>
                     <span className={s.exMeta}>
