@@ -1,0 +1,556 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-25T12:00:00Z",
+  "title": "Design System: Entreno",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "True Black",
+        "canonical": "#000000",
+        "tonalRamp": [
+          "oklch(15% 0.000 0)",
+          "oklch(26% 0.000 0)",
+          "oklch(38% 0.000 0)",
+          "oklch(49% 0.000 0)",
+          "oklch(61% 0.000 0)",
+          "oklch(72% 0.000 0)",
+          "oklch(84% 0.000 0)",
+          "oklch(95% 0.000 0)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Charcoal Surface",
+        "canonical": "#1c1c1e",
+        "tonalRamp": [
+          "oklch(15% 0.002 286)",
+          "oklch(26% 0.002 286)",
+          "oklch(38% 0.003 286)",
+          "oklch(49% 0.004 286)",
+          "oklch(61% 0.004 286)",
+          "oklch(72% 0.003 286)",
+          "oklch(84% 0.002 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "surface-raised": {
+        "role": "neutral",
+        "displayName": "Raised Charcoal",
+        "canonical": "#2c2c2e",
+        "tonalRamp": [
+          "oklch(15% 0.002 286)",
+          "oklch(26% 0.002 286)",
+          "oklch(38% 0.003 286)",
+          "oklch(49% 0.003 286)",
+          "oklch(61% 0.003 286)",
+          "oklch(72% 0.003 286)",
+          "oklch(84% 0.002 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "bar": {
+        "role": "neutral",
+        "displayName": "Tab Bar Black",
+        "canonical": "#111113",
+        "tonalRamp": [
+          "oklch(15% 0.002 286)",
+          "oklch(26% 0.003 286)",
+          "oklch(38% 0.003 286)",
+          "oklch(49% 0.004 286)",
+          "oklch(61% 0.004 286)",
+          "oklch(72% 0.003 286)",
+          "oklch(84% 0.003 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "White Ink",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "ink-secondary": {
+        "role": "neutral",
+        "displayName": "Secondary Ink",
+        "canonical": "#aeaeb2",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(26% 0.004 286)",
+          "oklch(38% 0.004 286)",
+          "oklch(49% 0.005 286)",
+          "oklch(61% 0.005 286)",
+          "oklch(72% 0.004 286)",
+          "oklch(84% 0.004 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "ink-tertiary": {
+        "role": "neutral",
+        "displayName": "Tertiary Ink",
+        "canonical": "#8e8e93",
+        "tonalRamp": [
+          "oklch(15% 0.004 286)",
+          "oklch(26% 0.005 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(49% 0.007 286)",
+          "oklch(61% 0.007 286)",
+          "oklch(72% 0.006 286)",
+          "oklch(84% 0.005 286)",
+          "oklch(95% 0.004 286)"
+        ]
+      },
+      "lime": {
+        "role": "primary",
+        "displayName": "Floor Lime",
+        "canonical": "#b8f23f",
+        "tonalRamp": [
+          "oklch(15% 0.101 126)",
+          "oklch(26% 0.131 126)",
+          "oklch(38% 0.161 126)",
+          "oklch(49% 0.191 126)",
+          "oklch(61% 0.191 126)",
+          "oklch(72% 0.161 126)",
+          "oklch(84% 0.131 126)",
+          "oklch(95% 0.101 126)"
+        ]
+      },
+      "on-lime": {
+        "role": "primary",
+        "displayName": "Lime Shadow Ink",
+        "canonical": "#0d1600",
+        "tonalRamp": [
+          "oklch(15% 0.023 127)",
+          "oklch(26% 0.030 127)",
+          "oklch(38% 0.037 127)",
+          "oklch(49% 0.044 127)",
+          "oklch(61% 0.044 127)",
+          "oklch(72% 0.037 127)",
+          "oklch(84% 0.030 127)",
+          "oklch(95% 0.023 127)"
+        ]
+      },
+      "lime-tint": {
+        "role": "primary",
+        "displayName": "Lime Tint",
+        "canonical": "#1e2a0c",
+        "tonalRamp": [
+          "oklch(15% 0.026 128)",
+          "oklch(26% 0.033 128)",
+          "oklch(38% 0.041 128)",
+          "oklch(49% 0.048 128)",
+          "oklch(61% 0.048 128)",
+          "oklch(72% 0.041 128)",
+          "oklch(84% 0.033 128)",
+          "oklch(95% 0.026 128)"
+        ]
+      },
+      "lime-tint-ink": {
+        "role": "primary",
+        "displayName": "Lime Tint Ink",
+        "canonical": "#dcf7a6",
+        "tonalRamp": [
+          "oklch(15% 0.053 123)",
+          "oklch(26% 0.069 123)",
+          "oklch(38% 0.084 123)",
+          "oklch(49% 0.100 123)",
+          "oklch(61% 0.100 123)",
+          "oklch(72% 0.084 123)",
+          "oklch(84% 0.069 123)",
+          "oklch(95% 0.053 123)"
+        ]
+      },
+      "danger": {
+        "role": "neutral",
+        "displayName": "Danger Coral",
+        "canonical": "#ff6961",
+        "tonalRamp": [
+          "oklch(15% 0.091 26)",
+          "oklch(26% 0.118 26)",
+          "oklch(38% 0.144 26)",
+          "oklch(49% 0.171 26)",
+          "oklch(61% 0.171 26)",
+          "oklch(72% 0.144 26)",
+          "oklch(84% 0.118 26)",
+          "oklch(95% 0.091 26)"
+        ]
+      },
+      "session-strength": {
+        "role": "secondary",
+        "displayName": "Strength Lime",
+        "canonical": "#b8f23f",
+        "tonalRamp": [
+          "oklch(15% 0.101 126)",
+          "oklch(26% 0.131 126)",
+          "oklch(38% 0.161 126)",
+          "oklch(49% 0.191 126)",
+          "oklch(61% 0.191 126)",
+          "oklch(72% 0.161 126)",
+          "oklch(84% 0.131 126)",
+          "oklch(95% 0.101 126)"
+        ]
+      },
+      "session-cardio": {
+        "role": "secondary",
+        "displayName": "Cardio Cyan",
+        "canonical": "#5ac8fa",
+        "tonalRamp": [
+          "oklch(15% 0.060 231)",
+          "oklch(26% 0.078 231)",
+          "oklch(38% 0.096 231)",
+          "oklch(49% 0.114 231)",
+          "oklch(61% 0.114 231)",
+          "oklch(72% 0.096 231)",
+          "oklch(84% 0.078 231)",
+          "oklch(95% 0.060 231)"
+        ]
+      },
+      "session-hiit": {
+        "role": "secondary",
+        "displayName": "HIIT Pink",
+        "canonical": "#ff5c7a",
+        "tonalRamp": [
+          "oklch(15% 0.097 13)",
+          "oklch(26% 0.126 13)",
+          "oklch(38% 0.155 13)",
+          "oklch(49% 0.183 13)",
+          "oklch(61% 0.183 13)",
+          "oklch(72% 0.155 13)",
+          "oklch(84% 0.126 13)",
+          "oklch(95% 0.097 13)"
+        ]
+      },
+      "session-recovery": {
+        "role": "secondary",
+        "displayName": "Recovery Amber",
+        "canonical": "#ffc24b",
+        "tonalRamp": [
+          "oklch(15% 0.073 81)",
+          "oklch(26% 0.094 81)",
+          "oklch(38% 0.116 81)",
+          "oklch(49% 0.138 81)",
+          "oklch(61% 0.138 81)",
+          "oklch(72% 0.116 81)",
+          "oklch(84% 0.094 81)",
+          "oklch(95% 0.073 81)"
+        ]
+      },
+      "session-rest": {
+        "role": "secondary",
+        "displayName": "Rest Grey",
+        "canonical": "#636366",
+        "tonalRamp": [
+          "oklch(15% 0.002 286)",
+          "oklch(26% 0.003 286)",
+          "oklch(38% 0.004 286)",
+          "oklch(49% 0.004 286)",
+          "oklch(61% 0.004 286)",
+          "oklch(72% 0.004 286)",
+          "oklch(84% 0.003 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "demo-stage": {
+        "role": "neutral",
+        "displayName": "Demo Stage",
+        "canonical": "#0e0e10",
+        "tonalRamp": [
+          "oklch(15% 0.002 286)",
+          "oklch(26% 0.003 286)",
+          "oklch(38% 0.003 286)",
+          "oklch(49% 0.004 286)",
+          "oklch(61% 0.004 286)",
+          "oklch(72% 0.003 286)",
+          "oklch(84% 0.003 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "demo-floor": {
+        "role": "neutral",
+        "displayName": "Demo Floor",
+        "canonical": "#1b1b1e",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(26% 0.004 286)",
+          "oklch(38% 0.005 286)",
+          "oklch(49% 0.005 286)",
+          "oklch(61% 0.005 286)",
+          "oklch(72% 0.005 286)",
+          "oklch(84% 0.004 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "demo-figure": {
+        "role": "neutral",
+        "displayName": "Figure White",
+        "canonical": "#f2f2f7",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(26% 0.004 286)",
+          "oklch(38% 0.005 286)",
+          "oklch(49% 0.006 286)",
+          "oklch(61% 0.006 286)",
+          "oklch(72% 0.005 286)",
+          "oklch(84% 0.004 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "demo-figure-far": {
+        "role": "neutral",
+        "displayName": "Far Limb Grey",
+        "canonical": "#6c6c72",
+        "tonalRamp": [
+          "oklch(15% 0.005 286)",
+          "oklch(26% 0.006 286)",
+          "oklch(38% 0.007 286)",
+          "oklch(49% 0.009 286)",
+          "oklch(61% 0.009 286)",
+          "oklch(72% 0.007 286)",
+          "oklch(84% 0.006 286)",
+          "oklch(95% 0.005 286)"
+        ]
+      },
+      "demo-focus-far": {
+        "role": "primary",
+        "displayName": "Far Focus Olive",
+        "canonical": "#5f7d27",
+        "tonalRamp": [
+          "oklch(15% 0.058 127)",
+          "oklch(26% 0.075 127)",
+          "oklch(38% 0.092 127)",
+          "oklch(49% 0.109 127)",
+          "oklch(61% 0.109 127)",
+          "oklch(72% 0.092 127)",
+          "oklch(84% 0.075 127)",
+          "oklch(95% 0.058 127)"
+        ]
+      },
+      "demo-prop": {
+        "role": "neutral",
+        "displayName": "Prop Grey",
+        "canonical": "#3a3a3f",
+        "tonalRamp": [
+          "oklch(15% 0.004 286)",
+          "oklch(26% 0.005 286)",
+          "oklch(38% 0.007 286)",
+          "oklch(49% 0.008 286)",
+          "oklch(61% 0.008 286)",
+          "oklch(72% 0.007 286)",
+          "oklch(84% 0.005 286)",
+          "oklch(95% 0.004 286)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Large Title",
+        "purpose": "Tab-screen titles: Hoy session title, Plan, Progreso."
+      },
+      "headline": {
+        "displayName": "Sheet Title",
+        "purpose": "Exercise, day sheet, history and runner titles (28 to 30px)."
+      },
+      "title": {
+        "displayName": "Section Head",
+        "purpose": "Section heads inside a screen (18 to 22px)."
+      },
+      "cue": {
+        "displayName": "Cue Line",
+        "purpose": "The technique figure's per-phase cue and lead sentences; reserves 2.6em."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Base copy and list-row names (600 for names)."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Set labels, meta lines, notes in secondary ink."
+      },
+      "numeral-hero": {
+        "displayName": "Hero Numeral",
+        "purpose": "Session timer (84px; 72px mid, 64px rest countdown)."
+      },
+      "numeral-count": {
+        "displayName": "Count Numeral",
+        "purpose": "Live set count in the set logger."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "The single house easing for every transition and entrance."
+      },
+      {
+        "name": "press",
+        "value": "transform 140-160ms; scale 0.97 (buttons) / 0.92 (round controls)",
+        "purpose": "Press feedback on tappable elements."
+      },
+      {
+        "name": "overlay-rise",
+        "value": "translateY(24px) + fade, 320ms",
+        "purpose": "Full-screen sheets and the session opening."
+      },
+      {
+        "name": "rest-in",
+        "value": "translateY(8px) + fade, 260ms",
+        "purpose": "Rest timer card entering."
+      },
+      {
+        "name": "check-pop",
+        "value": "scale 0.82 to 1.08 to 1, 320ms",
+        "purpose": "Set check turning lime."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "all durations 0.01ms",
+        "purpose": "prefers-reduced-motion: demos stay steppable."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "column-max",
+        "value": "560px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single lime action per screen: Empezar, Siguiente ejercicio.",
+      "html": "<button class=\"ds-btn-primary\">Empezar</button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 24px;border:0;border-radius:999px;font:700 18px/1.2 var(--font);transition:transform 160ms var(--ease),opacity 160ms var(--ease),background-color 160ms var(--ease);cursor:pointer;background:var(--accent);color:var(--on-accent);} .ds-btn-primary:active{transform:scale(0.97);} .ds-btn-primary:focus-visible{outline:3px solid var(--accent);outline-offset:2px;} .ds-btn-primary:disabled{opacity:.4;cursor:default;}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Raised-charcoal pill for Atrás, Saltar and alternates.",
+      "html": "<button class=\"ds-btn-secondary\">Atrás</button>",
+      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 24px;border:0;border-radius:999px;font:700 18px/1.2 var(--font);transition:transform 160ms var(--ease),opacity 160ms var(--ease),background-color 160ms var(--ease);cursor:pointer;background:var(--surface-2);color:var(--text);} .ds-btn-secondary:active{transform:scale(0.97);} .ds-btn-secondary:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Transparent lime text action for inline alternatives and disclosures.",
+      "html": "<button class=\"ds-btn-quiet\">Ver los 7</button>",
+      "css": ".ds-btn-quiet{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border:0;border-radius:999px;background:transparent;color:var(--accent);font:600 17px/1.2 var(--font);cursor:pointer;transition:transform 160ms var(--ease);} .ds-btn-quiet:active{transform:scale(0.97);} .ds-btn-quiet:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}"
+    },
+    {
+      "name": "Chip Group",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Equal-width pill options; selected inverts to white on black.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\" aria-pressed=\"false\">Caminar</button><button class=\"ds-chip\" aria-pressed=\"true\">Trotar</button><button class=\"ds-chip\" aria-pressed=\"false\">Bici</button></div>",
+      "css": ".ds-chips{display:flex;gap:8px;} .ds-chip{flex:1 1 0;white-space:nowrap;min-height:44px;padding:0 16px;border:0;border-radius:999px;background:var(--surface-2);color:var(--text);font:600 16px/1 var(--font);cursor:pointer;transition:background-color 160ms var(--ease),color 160ms var(--ease);} .ds-chip[aria-pressed=true]{background:var(--text);color:var(--bg);} .ds-chip:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}"
+    },
+    {
+      "name": "Grouped List",
+      "kind": "card",
+      "refersTo": "grouped-list",
+      "description": "20px charcoal container with hairline-divided tappable rows, hue dot and chevron.",
+      "html": "<ul class=\"ds-list\"><li><button class=\"ds-row\"><span class=\"ds-dot\" style=\"background:var(--c-strength)\"></span><span class=\"ds-row-text\"><span class=\"ds-row-name\">Lunes</span><span class=\"ds-row-meta\">Fuerza A · 35–45 min</span></span><span class=\"ds-chev\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 6 6 6-6 6\"/></svg></span></button></li><li><button class=\"ds-row\"><span class=\"ds-dot\" style=\"background:var(--c-cardio)\"></span><span class=\"ds-row-text\"><span class=\"ds-row-name\">Martes</span><span class=\"ds-row-meta\">Cardio · 25 min</span></span><span class=\"ds-chev\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 6 6 6-6 6\"/></svg></span></button></li></ul>",
+      "css": ".ds-list{margin:0;padding:0;list-style:none;border-radius:var(--r-card);background:var(--surface);overflow:hidden;} .ds-list>li+li{border-top:1px solid var(--line);} .ds-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%;min-height:68px;padding:10px 14px 10px 16px;border:0;background:none;color:var(--text);text-align:left;font:inherit;cursor:pointer;transition:background-color 160ms var(--ease);} .ds-row:active{background:var(--surface-2);} .ds-row:focus-visible{outline:3px solid var(--accent);outline-offset:2px;outline-offset:-3px;} .ds-dot{width:12px;height:12px;border-radius:999px;} .ds-row-text{display:grid;gap:2px;} .ds-row-name{font-size:17px;font-weight:600;} .ds-row-meta{font-size:15px;color:var(--text-2);} .ds-chev{display:grid;color:var(--text-3);}"
+    },
+    {
+      "name": "Set Logger",
+      "kind": "input",
+      "refersTo": "set-card",
+      "description": "Set card with round steppers, a 44px rounded count and a 64px check; done washes to lime tint.",
+      "html": "<div class=\"ds-set\"><span class=\"ds-set-label\">Serie 1</span><div class=\"ds-set-value\"><button class=\"ds-adj\" aria-label=\"Menos\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M6 12h12\"/></svg></button><span class=\"ds-set-num\"><b>10</b><span>reps</span></span><button class=\"ds-adj\" aria-label=\"Más\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M12 6v12M6 12h12\"/></svg></button></div><button class=\"ds-check\" aria-pressed=\"false\" aria-label=\"Hecha\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m5 12.5 4.5 4.5L19 7\"/></svg></button></div>",
+      "css": ".ds-set{display:grid;grid-template-columns:1fr auto;grid-template-areas:'label label' 'value check';align-items:center;gap:6px 12px;padding:14px 14px 14px 18px;border-radius:var(--r-card);background:var(--surface);color:var(--text);transition:background-color 200ms var(--ease);} .ds-set:has(.ds-check[aria-pressed=true]){background:#1e2a0c;} .ds-set-label{grid-area:label;font-size:15px;font-weight:600;color:var(--text-2);} .ds-set-value{grid-area:value;display:flex;align-items:center;gap:10px;} .ds-adj{display:grid;place-items:center;width:48px;height:48px;border:0;border-radius:999px;background:var(--surface-2);color:var(--text);cursor:pointer;transition:transform 140ms var(--ease);} .ds-adj:active{transform:scale(.92);} .ds-set-num{display:inline-flex;align-items:baseline;justify-content:center;gap:6px;min-width:96px;font-family:var(--font-num);font-variant-numeric:tabular-nums;} .ds-set-num b{font-size:44px;font-weight:700;line-height:1;} .ds-set-num span{font-size:15px;color:var(--text-2);font-family:var(--font);} .ds-check{grid-area:check;display:grid;place-items:center;width:64px;height:64px;border:0;border-radius:999px;background:var(--surface-2);color:var(--text);cursor:pointer;transition:transform 140ms var(--ease),background-color 200ms var(--ease);} .ds-check[aria-pressed=true]{background:var(--accent);color:var(--on-accent);} .ds-check:active{transform:scale(.92);} .ds-adj:focus-visible,.ds-check:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}"
+    },
+    {
+      "name": "Technique Figure",
+      "kind": "custom",
+      "refersTo": "demo-stage",
+      "description": "Signature: near-black stage with a round-capped figure, lime focus muscles, cue line beneath and controls beside it, never over it.",
+      "html": "<figure class=\"ds-demo\"><div class=\"ds-demo-stage\"><svg viewBox=\"-110 -190 220 196\" width=\"100%\" height=\"100%\" aria-hidden=\"true\"><rect x=\"-110\" y=\"-6\" width=\"220\" height=\"12\" fill=\"var(--demo-floor)\"/><g stroke-linecap=\"round\" fill=\"none\"><line x1=\"-6\" y1=\"-60\" x2=\"10\" y2=\"-4\" stroke=\"var(--demo-focus-far)\" stroke-width=\"13\"/><line x1=\"0\" y1=\"-60\" x2=\"18\" y2=\"-4\" stroke=\"var(--demo-focus)\" stroke-width=\"14\"/><line x1=\"0\" y1=\"-62\" x2=\"0\" y2=\"-130\" stroke=\"var(--demo-fig)\" stroke-width=\"22\"/><line x1=\"0\" y1=\"-125\" x2=\"34\" y2=\"-110\" stroke=\"var(--demo-fig)\" stroke-width=\"13\"/></g><circle cx=\"0\" cy=\"-150\" r=\"11\" fill=\"var(--demo-fig)\"/></svg></div><div class=\"ds-demo-under\"><figcaption class=\"ds-cue\">Baja: cadera atrás y pecho alto</figcaption><div class=\"ds-ctrls\"><button class=\"ds-ctrl\" aria-label=\"Pausar demo\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M8 5v14m8-14v14\"/></svg></button><button class=\"ds-ctrl ds-speed\" aria-pressed=\"false\">1×</button></div></div></figure>",
+      "css": ".ds-demo{margin:0;display:grid;gap:12px;max-width:360px;} .ds-demo-stage{aspect-ratio:220/196;border-radius:var(--r-card);background:var(--demo-bg);overflow:hidden;} .ds-demo-under{display:grid;gap:10px;} .ds-cue{min-height:2.6em;font:600 19px/1.3 var(--font);color:var(--text);text-wrap:balance;} .ds-ctrls{display:flex;justify-content:flex-end;gap:8px;margin-top:-4px;} .ds-ctrl{display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:999px;background:var(--surface-2);color:var(--text);cursor:pointer;transition:transform 160ms var(--ease),background-color 160ms var(--ease);} .ds-ctrl:active{transform:scale(.92);} .ds-ctrl[aria-pressed=true]{background:var(--text);color:var(--bg);} .ds-ctrl:focus-visible{outline:3px solid var(--accent);outline-offset:2px;} .ds-speed{font:600 15px/1 var(--font-num);}"
+    },
+    {
+      "name": "Rest Timer",
+      "kind": "card",
+      "refersTo": "set-card",
+      "description": "Charcoal card sliding in above the footer with a 64px rounded countdown and a Saltar pill.",
+      "html": "<div class=\"ds-rest\"><div class=\"ds-rest-text\"><span class=\"ds-rest-label\">Descansa</span><span class=\"ds-rest-time\">1:29</span><span class=\"ds-rest-hint\">Puedes seguir a partir de 1:00</span></div><button class=\"ds-rest-skip\">Saltar</button></div>",
+      "css": ".ds-rest{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 14px 14px 20px;border-radius:var(--r-card);background:var(--surface);color:var(--text);animation:ds-rest-in 260ms var(--ease);} @keyframes ds-rest-in{from{transform:translateY(8px);opacity:0;}} .ds-rest-text{display:grid;gap:2px;} .ds-rest-label{font-size:17px;font-weight:700;color:var(--text-2);} .ds-rest-time{font:700 64px/1 var(--font-num);font-variant-numeric:tabular-nums;letter-spacing:-0.02em;} .ds-rest-hint{font-size:14px;color:var(--text-2);} .ds-rest-skip{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 24px;border:0;border-radius:999px;font:700 18px/1.2 var(--font);transition:transform 160ms var(--ease),opacity 160ms var(--ease),background-color 160ms var(--ease);cursor:pointer;background:var(--surface-2);color:var(--text);} .ds-rest-skip:active{transform:scale(.97);} .ds-rest-skip:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}"
+    },
+    {
+      "name": "Tab Bar",
+      "kind": "nav",
+      "refersTo": "tab-bar",
+      "description": "iOS bottom bar: three stroke icons over 12px labels, grey at rest, white when current.",
+      "html": "<nav class=\"ds-tabs\"><button class=\"ds-tab\" aria-current=\"page\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3v2M12 19v2M5 12H3m18 0h-2M6.3 6.3 4.9 4.9m14.2 14.2-1.4-1.4M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z\"/></svg><span>Hoy</span></button><button class=\"ds-tab\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 7h16M4 12h16M4 17h10M8 3v4m8-4v4M5 21h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v15a1 1 0 0 0 1 1Z\"/></svg><span>Plan</span></button><button class=\"ds-tab\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M5 20V11m7 9V4m7 16v-6\"/></svg><span>Progreso</span></button></nav>",
+      "css": ".ds-tabs{display:grid;grid-template-columns:repeat(3,1fr);padding:6px 16px;background:var(--bar);} .ds-tab{display:grid;justify-items:center;gap:2px;min-height:58px;padding:6px 0 0;border:0;background:none;color:var(--text-3);font:600 12px/1.2 var(--font);cursor:pointer;transition:color 160ms var(--ease);} .ds-tab[aria-current=page]{color:var(--text);} .ds-tab:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Coach on the Floor",
+    "overview": "Entreno plays the fitness category standard straight: the dark, quiet iOS grammar of Apple Fitness and Nike Training Club, tuned to be read from a phone propped on the floor two metres away. Everything sits on a true-black ground in a single centred column; surfaces are one step of charcoal lighter; ink is white with two grey steps. One lime accent carries every action and every \"done\", and nothing else competes with it.\n\nThe signature is the technique figure: a flat, round-capped vector athlete on a near-black stage, with the working muscle group lit in lime and a single cue line beneath it that changes with each phase of the rep. Its controls sit beside the cue, never over the figure. Around it, type and targets run large: 34px titles, 44 to 84px rounded numerals, 56 to 64px pill buttons. Depth comes from tonal steps, never shadow.",
+    "keyCharacteristics": [
+      "True-black ground, charcoal surfaces, white ink, one lime accent.",
+      "Session-type hues exist only as small markers (dots, done marks, HIIT block segments).",
+      "System SF Pro for words, SF Rounded tabular numerals for every count and time.",
+      "Soft 20px containers, 14px inner shapes, pills for everything tappable.",
+      "Flat: no shadows, no borders except hairline row rules inside grouped lists.",
+      "Motion is short and settling (one ease-out curve); reduced motion collapses it."
+    ],
+    "rules": [
+      {
+        "name": "The One Voice Rule",
+        "body": "Lime is the only colour that means \"tap this\" or \"done\". Never introduce a second action colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The Marker-Only Rule",
+        "body": "Session hues appear only as small marks (dots, rings, segments at most 28px wide). They never fill a button, a card, or a title.",
+        "section": "colors"
+      },
+      {
+        "name": "The Rounded Number Rule",
+        "body": "Every count, time, week number, and speed label uses the rounded numeral face with tabular figures. Words never do.",
+        "section": "typography"
+      },
+      {
+        "name": "The Floor Distance Rule",
+        "body": "Nothing a user acts on mid-session is set below 17px; the number being counted is at least 44px.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tonal Step Rule",
+        "body": "To lift something, move it one step up the ground / surface / raised ladder. Never add a shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep every screen to one dominant thing: one figure, one number, or one large title, with the primary lime pill at thumb reach.",
+      "Do show session type with a 12 to 14px hue dot beside the title or row, never with a coloured surface.",
+      "Do set all numbers in the rounded tabular face (ui-rounded), at 44px or larger when they are being counted live.",
+      "Do place demo controls under the figure beside its cue line, as 44px raised-charcoal circles.",
+      "Do mark completion with the lime family: lime check, lime-tint card, pale-lime banner text.",
+      "Do use the single house ease (cubic-bezier(0.22, 1, 0.36, 1)) at 140 to 320ms for presses, fades, and rises."
+    ],
+    "donts": [
+      "Don't use shadows or borders to separate surfaces; step the tone instead.",
+      "Don't add a second accent or let a session hue fill a button, card, or heading.",
+      "Don't add a blue or blue-violet session colour; recovery stays amber so it never reads as cardio's cyan at dot size.",
+      "Don't put controls, labels, or overlays on top of the technique figure.",
+      "Don't set interactive text below 17px or tap targets below 44px.",
+      "Don't add small uppercase labels above titles; titles stand on their own with a meta line beneath."
+    ]
+  }
+}
